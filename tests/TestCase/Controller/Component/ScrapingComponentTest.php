@@ -20,13 +20,25 @@ class ScrapingComponentTest extends TestCase
     }
     
     /**
-     * ポケモン基本情報取得
+     * ポケモン一覧取得
      */
-    public function testcreatePokemonBasic()
+    public function testsscrapingPokemons()
     {
-        $pokemons = $this->Scraping->createPokemonBasic();
+        $pokemons = $this->Scraping->scrapingPokemons();
         $this->assertTextEquals("フシギダネ", $pokemons[0][1]);
         $this->assertTextEquals("ゼラオラ", $pokemons[844][1]);
+    }
+    
+    /**
+     * 特性一覧取得
+     */
+    public function testscrapingQualities()
+    {
+        $qualities = $this->Scraping->scrapingQualities();
+        $this->assertTextEquals("あくしゅう", $qualities[0][1]);
+        $this->assertTextEquals("野生ポケモンと出会いにくくなる。攻撃した相手がたまにひるむ。", $qualities[0][2]);
+        $this->assertTextEquals("ブレインフォース", $qualities[232][1]);
+        $this->assertTextEquals("効果抜群のわざの威力を1.2倍に上げる。s", $qualities[232][2]);
     }
     
     /**

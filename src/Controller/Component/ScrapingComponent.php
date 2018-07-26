@@ -26,7 +26,8 @@ class ScrapingComponent extends Component
     }
     
     /**
-     * ポケモン基本情報
+     * スクレイピング-ポケモン一覧
+     * テーブル-Pokemons
      * 
      * @return array
      * 
@@ -36,7 +37,7 @@ class ScrapingComponent extends Component
      * - 属性1
      * - 属性2
      */
-    public function createPokemonBasic()
+    public function scrapingPokemons()
     {
         $uri = self::BASE_URI . urlencode("ポケモン一覧");
         $crawler = $this->client->request('GET', $uri);
@@ -59,15 +60,7 @@ class ScrapingComponent extends Component
             // 単体属性(属性2が無いケースの考慮)
             $isNotBlank = (trim($elements[$i]) !== "");
             if ($isNotBlank) {
-                
-                $idx = count($pokemon);
-                $isType = ($idx === 2 || $idx === 3);
-                
-                if ($isType) {
-                    $pokemon[] = $this->convertType(trim($elements[$i]));
-                } else {
-                    $pokemon[] = trim($elements[$i]);
-                }
+                $pokemon[] = trim($elements[$i]);
             }
             
             // 最後の図鑑Noのポケモン追加
@@ -77,6 +70,45 @@ class ScrapingComponent extends Component
             }
         }
         return $pokemons;
+    }
+    
+    /**
+     * スクレイピング-特性
+     * テーブル-Qualities
+     * 
+     * @return array
+     */
+    public function scrapingQualities()
+    {
+        $uri = self::BASE_URI . urlencode("とくせい一覧");
+        $crawler = $this->client->request('GET', $uri);
+        $elements = $crawler->filter('table.bluetable tr td')->each(function($element){
+            return $element->text();
+        });
+        
+        $qualities = array();
+        $qualitity = array();
+        $max = count($elements);
+        
+        for ($i = 0; $i < $max; $i++) {
+            
+            // 初出世代は不要
+            if ($i !== 0 && ($i % 4 === 0)) {
+                array_pop($qualitity);
+                $qualities[] = $qualitity;
+                $qualitity = array();
+            }
+            
+            $qualitity[] = trim($elements[$i]);
+            
+            // 最後の図鑑Noのポケモン追加
+            $isLast = ($i === ($max - 1));
+            if ($isLast) {
+                array_pop($qualitity);
+                $qualities[] = $qualitity;
+            }
+        }
+        return $qualities;
     }
     
     /**
