@@ -18,5 +18,5 @@ composer require fabpot/goutte
 
 ## スクレイピング
 
-- ポケモンWiki(https://wiki.xn--rckteqa2e.com/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8)
+- ポケモンWiki(https://wiki.xn--rckteqa2e.com/)
 - ポケモン徹底攻略(https://yakkun.com/)
