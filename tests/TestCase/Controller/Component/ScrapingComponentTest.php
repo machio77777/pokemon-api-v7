@@ -38,7 +38,19 @@ class ScrapingComponentTest extends TestCase
         $this->assertTextEquals("あくしゅう", $qualities[0][1]);
         $this->assertTextEquals("野生ポケモンと出会いにくくなる。攻撃した相手がたまにひるむ。", $qualities[0][2]);
         $this->assertTextEquals("ブレインフォース", $qualities[232][1]);
-        $this->assertTextEquals("効果抜群のわざの威力を1.2倍に上げる。s", $qualities[232][2]);
+        $this->assertTextEquals("効果抜群のわざの威力を1.2倍に上げる。", $qualities[232][2]);
+    }
+    
+    /**
+     * 技一覧取得
+     */
+    public function testscrapingSkills()
+    {
+        $skills = $this->Scraping->scrapingSkills();
+        $this->assertTextEquals("アームハンマー", $skills[0][0]);
+        $this->assertTextEquals("かくとう", $skills[0][1]);
+        $this->assertTextEquals("物理", $skills[0][2]);
+        $this->assertTextEquals("攻撃後、自分の『すばやさ』ランクが1段階下がる。特性『てつのこぶし』の時、威力が1.2倍になる。", $skills[0][10]);
     }
     
     /**
