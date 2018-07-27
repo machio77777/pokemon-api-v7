@@ -10,8 +10,6 @@ use Goutte\Client;
  */
 class ScrapingComponent extends Component
 {
-    CONST BASE_URI = "https://wiki.xn--rckteqa2e.com/wiki/";
-
     protected $_defaultConfig = [];
     
     protected $types;
@@ -39,7 +37,7 @@ class ScrapingComponent extends Component
      */
     public function scrapingPokemons()
     {
-        $uri = self::BASE_URI . urlencode("ポケモン一覧");
+        $uri = "https://wiki.xn--rckteqa2e.com/wiki/" . urlencode("ポケモン一覧");
         $crawler = $this->client->request('GET', $uri);
         $elements = $crawler->filter('table.bluetable tr td')->each(function($element){
             return $element->text();
@@ -77,10 +75,15 @@ class ScrapingComponent extends Component
      * テーブル-Qualities
      * 
      * @return array
+     * 
+     * レスポンス値
+     * - No 
+     * - とくせい名
+     * - 効果
      */
     public function scrapingQualities()
     {
-        $uri = self::BASE_URI . urlencode("とくせい一覧");
+        $uri = "https://wiki.xn--rckteqa2e.com/wiki/" . urlencode("とくせい一覧");
         $crawler = $this->client->request('GET', $uri);
         $elements = $crawler->filter('table.bluetable tr td')->each(function($element){
             return $element->text();
@@ -101,7 +104,6 @@ class ScrapingComponent extends Component
             
             $qualitity[] = trim($elements[$i]);
             
-            // 最後の図鑑Noのポケモン追加
             $isLast = ($i === ($max - 1));
             if ($isLast) {
                 array_pop($qualitity);
@@ -109,6 +111,59 @@ class ScrapingComponent extends Component
             }
         }
         return $qualities;
+    }
+    
+    /**
+     * スクレイピング-技リスト
+     * - skills
+     * 
+     * @return array
+     * 
+     * レスポンス値
+     * 技情報
+     * - 名前
+     * - 属性
+     * - 分類(物理/特殊/変化)
+     * - 威力
+     * - Z技
+     * - 命中
+     * - PP
+     * - 直接
+     * - 守る
+     * - 対象
+     * - 効果
+     */
+    public function scrapingSkills()
+    {
+        $skills = array();
+        
+        for ($i = 0; $i < 10; $i++) {
+            
+            $uri = "https://yakkun.com/sm/move_list.htm?c=" . $i;
+            $crawler = $this->client->request('GET', $uri);
+            $elements = $crawler->filter('table.center tr td')->each(function($element){
+                return $element->text();
+            });
+            
+            $skill = array();
+            $max = count($elements);
+            
+            for ($j = 0; $j < $max; $j++) {
+                
+                if ($j !== 0 && ($j % 11 === 0)) {
+                    $skills[] = $skill;
+                    $skill = array();
+                }
+                
+                $skill[] = trim($elements[$j]);
+            
+                $isLast = ($j === ($max - 1));
+                if ($isLast) {
+                    $skills[] = $skill;
+                }
+            }
+        }
+        return $skills;
     }
     
     /**
