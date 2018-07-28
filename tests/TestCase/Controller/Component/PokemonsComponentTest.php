@@ -28,4 +28,14 @@ class PokemonsComponentTest extends TestCase
         $this->assertTextEquals("フシギダネ", $pokemons[0][1]);
         $this->assertTextEquals("ゼラオラ", $pokemons[844][1]);
     }
+    
+    public function testcollectTribals()
+    {
+        $failure = $this->Pokemons->collectTribals(5, 4);
+        $this->assertFalse($failure);
+        
+        $pokemons = $this->Pokemons->collectTribals(1, 2);
+        $this->assertTextEquals("45", $pokemons[0]['hp']);
+        $this->assertTextEquals("しんりょく", $pokemons[0]['quality_id1']);
+    }
 }

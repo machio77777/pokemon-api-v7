@@ -12,6 +12,8 @@ class PokemonsComponent extends Component
 {
     CONST POKEMON_WIKI = "https://wiki.xn--rckteqa2e.com/wiki/";
     
+    CONST POKEMON_KORYAKU = "https://yakkun.com/";
+    
     protected $_defaultConfig = [];
     
     private $client;
@@ -66,10 +68,75 @@ class PokemonsComponent extends Component
         return $pokemons;
     }
     
-    // 特性 + 種族値の紐付け
-    public function addStrengthStatus()
+    /**
+     * 種族値+特性スクレイピング
+     * @return $pokemons
+     * - 図鑑No
+     * - 種族値(HP)
+     * - 種族値(AT)
+     * - 種族値(DF)
+     * - 種族値(SA)
+     * - 種族値(SD)
+     * - 種族値(SP)
+     * - 特性1
+     * - 特性2
+     * - 夢特性
+     */
+    public function collectTribals(int $start, int $end)
     {
-        // 
+        if ($start > $end) {
+            return false;
+        }
+        
+        $pokemons = array();
+        
+        for ($i = $start; $i < $end; $i++) {
+         
+            $uri = self::POKEMON_KORYAKU . "sm/zukan/n{$i}";
+            $crawler = $this->client->request('GET', $uri);
+            $pokemon = array();
+            
+            $tribals = $crawler->filter('table.center td.left')->each(function($element){
+                return $element->text();
+            });
+            
+            // 改行無しのスペース(&nbsp;)削除
+            $pokemon['no'] = $i;
+            $pokemon['hp'] = trim($tribals[0], chr(0xC2).chr(0xA0));
+            $pokemon['at'] = trim($tribals[1], chr(0xC2).chr(0xA0));
+            $pokemon['df'] = trim($tribals[2], chr(0xC2).chr(0xA0));
+            $pokemon['sa'] = trim($tribals[3], chr(0xC2).chr(0xA0));
+            $pokemon['sd'] = trim($tribals[4], chr(0xC2).chr(0xA0));
+            $pokemon['sp'] = trim($tribals[5], chr(0xC2).chr(0xA0));
+            
+            // 特性
+            $qualities = $crawler->filter('table.center td.c1')->each(function($element){
+                return $element->text();
+            });
+            
+            // 特性1
+            if (isset($qualities[29])) {
+                $pokemon['quality_id1'] = trim($qualities[29]);
+            }
+            
+            // 特性2 or 夢特性
+            if (isset($qualities[30])) {
+                if (strpos($qualities[30],'*') !== false) {
+                    $pokemon['quality_id2'] = "";
+                    $pokemon['dream_quality'] = str_replace('*', '', trim($qualities[30]));
+                } else {
+                    $pokemon['quality_id2'] = trim($qualities[30]);
+                }
+            }
+            
+            // 夢特性
+            if (isset($qualities[31])) {
+                $pokemon['dream_quality'] = str_replace('*', '', trim($qualities[31]));
+            }
+            
+            $pokemons[] = $pokemon;
+        }
+        return $pokemons;
     }
     
 }
