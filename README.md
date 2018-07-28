@@ -20,12 +20,14 @@ composer require fabpot/goutte
 ## スクレイピング
 
 ```
-・ポケモン基本情報(図鑑No/名前/属性1/属性2/特性1/特性2/夢特性/HP/AT/DF/SA/SD/SP)
-・特性
+・図鑑No
+・名前
+・属性(1/2)
+・特性(1/2/夢)
+・種族値(HP/AT/DF/SA/SD/SP)
 ・技
-・ポケモン毎の覚える技
 
-[参考元]
+【参考元】
 ・ポケモンWiki(https://wiki.xn--rckteqa2e.com/)
 ・ポケモン徹底攻略(https://yakkun.com/)
 ```
