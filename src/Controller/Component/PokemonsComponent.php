@@ -70,6 +70,8 @@ class PokemonsComponent extends Component
     
     /**
      * 種族値+特性スクレイピング
+     * @param int $start
+     * @param int $end
      * @return $pokemons
      * - 図鑑No
      * - 種族値(HP)
@@ -84,7 +86,7 @@ class PokemonsComponent extends Component
      */
     public function collectTribals(int $start, int $end)
     {
-        if ($start > $end) {
+        if ($start <= 0 || ($start > $end)) {
             return false;
         }
         
@@ -135,6 +137,41 @@ class PokemonsComponent extends Component
             }
             
             $pokemons[] = $pokemon;
+        }
+        return $pokemons;
+    }
+    
+    /**
+     * 覚える技スクレイピング
+     * @param int $start
+     * @param int $end
+     * @return array $pokemons
+     */
+    public function collectSkillsByPokemon(int $start, int $end)
+    {
+        if ($start <= 0 || ($start > $end)) {
+            return false;
+        }
+        
+        $pokemons = array();
+        
+        for ($i = $start; $i < $end; $i++) {
+            
+            $uri = self::POKEMON_KORYAKU . "sm/zukan/n{$i}";
+            $crawler = $this->client->request('GET', $uri);
+            $pokemon = array();
+            
+            $skills = $crawler->filter('tr.move_main_row td a')->each(function($element) {
+                return $element->text();
+            });
+            
+            $isSkipval = "遺伝経路";
+            foreach ($skills as $skill) {
+                if ($isSkipval !== $skill) {
+                    $pokemon[] = trim($skill);
+                }
+            }
+            $pokemons[$i] = $pokemon;
         }
         return $pokemons;
     }
