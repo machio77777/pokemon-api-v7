@@ -38,7 +38,7 @@ ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 [GET]DocumentRoot/pokemons/{zukan_no}.json
 
 ・SkillsAPI
-[GET]DocumentRoot/pokemons/{zukan_no}.json
+[GET]DocumentRoot/skills/{skill_id}.json
 
 ・QualitiesAPI
 [GET]DocumentRoot/qualities/{quality_id}.json
