@@ -31,3 +31,7 @@ composer require fabpot/goutte
 ・ポケモンWiki(https://wiki.xn--rckteqa2e.com/)
 ・ポケモン徹底攻略(https://yakkun.com/)
 ```
+
+## その他
+- bakeエラー解消
+ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock

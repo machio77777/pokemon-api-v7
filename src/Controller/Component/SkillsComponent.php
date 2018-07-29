@@ -26,22 +26,25 @@ class SkillsComponent extends Component
     /**
      * 技スクレイピング
      * @return $skills
-     * - 名前
-     * - 属性
-     * - 分類(物理/特殊/変化)
-     * - 威力
-     * - Z技
-     * - 命中
-     * - PP
-     * - 直接
-     * - 守る
-     * - 対象
-     * - 効果
+     * - 名前[0]
+     * - 属性[1]
+     * - 分類(物理/特殊/変化)[2]
+     * - 威力[3]
+     * - Z技[4]
+     * - 命中[5]
+     * - PP[6]
+     * - 直接[7]
+     * - 守る[8]
+     * - 対象[9]
+     * - 効果[10]
      */
     public function collectSkills()
     {
         $skills = array();
         
+        /**
+         * $i : c1(あ行) - c9(わ行)
+         */
         for ($i = 0; $i < 10; $i++) {
             
             $uri = self::POKEMON_KORYAKU . 'sm/move_list.htm?c=' . $i;
@@ -60,7 +63,11 @@ class SkillsComponent extends Component
                     $skill = array();
                 }
                 
-                $skill[] = trim($elements[$j]);
+                if (trim($elements[$j]) === '-') {
+                    $skill[] = 0;
+                } else {
+                    $skill[] = trim($elements[$j]);
+                }
             
                 $isLast = ($j === ($max - 1));
                 if ($isLast) {
