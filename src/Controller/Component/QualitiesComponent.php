@@ -27,7 +27,7 @@ class QualitiesComponent extends Component
      * 特性スクレイピング
      * @return $qualities
      * - No
-     * - 技名
+     * - 特性名
      * - 効果
      */
     public function collectQualities()

@@ -67,6 +67,11 @@ define('TMP', ROOT . DS . 'tmp' . DS);
 define('LOGS', ROOT . DS . 'logs' . DS);
 
 /**
+ * Path to the sql directory
+ */
+define('SQL', ROOT . DS . 'sql' . DS);
+
+/**
  * Path to the cache files directory. It can be shared between hosts in a multi-server setup.
  */
 define('CACHE', TMP . 'cache' . DS);
