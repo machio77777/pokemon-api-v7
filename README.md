@@ -31,6 +31,19 @@ vendor/tmpなどバージョン管理対象でないものを指定
 ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 ```
 
+## RestfulAPI
+
+```
+・PokemonsAPI
+[GET]DocumentRoot/pokemons/{zukan_no}.json
+
+・SkillsAPI
+[GET]DocumentRoot/pokemons/{zukan_no}.json
+
+・QualitiesAPI
+[GET]DocumentRoot/qualities/{quality_id}.json
+```
+
 ## スクレイピング
 
 ```

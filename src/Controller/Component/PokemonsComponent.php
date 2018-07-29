@@ -119,6 +119,8 @@ class PokemonsComponent extends Component
             // 特性1
             if (isset($qualities[29])) {
                 $pokemon['quality_id1'] = trim($qualities[29]);
+            } else {
+                $pokemon['quality_id1'] = "";
             }
             
             // 特性2 or 夢特性
@@ -128,7 +130,11 @@ class PokemonsComponent extends Component
                     $pokemon['dream_quality'] = str_replace('*', '', trim($qualities[30]));
                 } else {
                     $pokemon['quality_id2'] = trim($qualities[30]);
+                    $pokemon['dream_quality'] = "";
                 }
+            } else {
+                $pokemon['quality_id2'] = "";
+                $pokemon['dream_quality'] = "";
             }
             
             // 夢特性
