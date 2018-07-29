@@ -3,6 +3,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use App\Controller\Component\QualitiesComponent;
 
 /**
  * Commonコンポーネントクラス
@@ -11,12 +12,15 @@ class CommonComponent extends Component
 {
     protected $_defaultConfig = [];
     
+    private $Qualities;
+    private $qualities;
     private $types;
     
     public function __construct(ComponentRegistry $registry, array $config = array())
     {
         parent::__construct($registry, $config);
-        
+        $this->Qualities = new QualitiesComponent($registry);
+        $this->initQualities();
         $this->initTypes();
     }
     
@@ -32,6 +36,19 @@ class CommonComponent extends Component
         } else {
             return "";
         }
+    }
+    
+    /**
+     * 特性変換
+     * @param string $qualityNm
+     * return string
+     */
+    public function convertQuality($qualityNm)
+    {
+        if (array_key_exists($qualityNm, $this->qualities)) {
+            return $this->qualities[$qualityNm];
+        }
+        return 0;
     }
     
     /**
@@ -59,5 +76,17 @@ class CommonComponent extends Component
             'はがね' => 17,
             'フェアリー' => 18
         );
+    }
+    
+    /**
+     * 特性初期化
+     */
+    private function initQualities()
+    {
+        $elements = $this->Qualities->collectQualities();
+        $this->qualities = array();
+        foreach ($elements as $element) {   
+            $this->qualities[$element[1]] = $element[0];
+        }
     }
 }

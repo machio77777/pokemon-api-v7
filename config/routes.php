@@ -12,9 +12,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->setExtensions(['json']);
+    $routes->resources('Pokemons');
+    $routes->resources('Qualities');
+    $routes->resources('Skills');
     $routes->fallbacks(DashedRoute::class);
-    
-    Router::prefix('scraping', function ($routes) {
-        $routes->fallbacks('DashedRoute');
-    });
 });

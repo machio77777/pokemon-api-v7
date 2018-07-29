@@ -50,11 +50,18 @@ class PokemonsUpdateCommand extends Command
             $sa = $pokemons[$i]['sa'];
             $sd = $pokemons[$i]['sd'];
             $sp = $pokemons[$i]['sp'];
-            
-            // todo 特性変換
-            $quality_id1 = "";
-            $quality_id2 = "";
-            $dream_quality = "";
+           
+            $quality_id1 = $this->Common->convertQuality($pokemons[$i]['quality_id1']);
+            if ($pokemons[$i]['quality_id2'] !== '') {
+                $quality_id2 = $this->Common->convertQuality($pokemons[$i]['quality_id2']);
+            } else {
+                $quality_id2 = 0;
+            }
+            if ($pokemons[$i]['dream_quality'] !== '') {
+                $dream_quality = $this->Common->convertQuality($pokemons[$i]['dream_quality']);
+            } else {
+                $dream_quality = 0;
+            }
             
             $sql = "UPDATE Pokemons SET ";
             $sql .= "hp = {$hp}, ";
