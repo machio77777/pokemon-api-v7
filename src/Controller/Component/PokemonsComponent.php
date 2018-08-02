@@ -70,7 +70,7 @@ class PokemonsComponent extends Component
     
     /**
      * 種族値+特性スクレイピング
-     * @param int $start
+     * @param int $start 
      * @param int $end
      * @return $pokemons
      * - 図鑑No
@@ -91,7 +91,6 @@ class PokemonsComponent extends Component
         }
         
         $pokemons = array();
-        
         for ($i = $start; $i < $end; $i++) {
          
             $uri = self::POKEMON_KORYAKU . "sm/zukan/n{$i}";

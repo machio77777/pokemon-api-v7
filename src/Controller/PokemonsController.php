@@ -8,6 +8,10 @@ use App\Controller\AppController;
  */
 class PokemonsController extends AppController
 {
+    /**
+     * Pokemons GET
+     * @param integer $zukanNo 図鑑No
+     */
     public function view($zukanNo = null)
     {
         $pokemon = $this->Pokemons
