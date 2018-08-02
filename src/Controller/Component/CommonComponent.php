@@ -16,6 +16,11 @@ class CommonComponent extends Component
     private $qualities;
     private $types;
     
+    /**
+     * コンストラクタ
+     * @param ComponentRegistry $registry
+     * @param array $config
+     */
     public function __construct(ComponentRegistry $registry, array $config = array())
     {
         parent::__construct($registry, $config);
@@ -26,7 +31,7 @@ class CommonComponent extends Component
     
     /**
      * 属性変換
-     * @param  string $typeNm
+     * @param  string $typeNm 属性名
      * @return string 
      */
     public function convertType($typeNm)
@@ -40,7 +45,7 @@ class CommonComponent extends Component
     
     /**
      * 特性変換
-     * @param string $qualityNm
+     * @param string $qualityNm 特性名
      * return string
      */
     public function convertQuality($qualityNm)

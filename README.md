@@ -1,28 +1,25 @@
 
 # Pokémon RestfulAPI By CakePHP3
 
-レーティング対戦で必要なポケモン基本情報のAPI提供
+ポケモンレーティング対戦で必要になるポケモンの各種マスタAPI提供
 - レスポンスはJSON形式で返却
-
-必要な情報はスクレイピングで取得
-- ポケモンWiki(https://wiki.xn--rckteqa2e.com/)
-- ポケモン徹底攻略(https://yakkun.com/)
+- 必要な情報はGoutteでスクレイピング
 
 ## 環境構築
 
 ### 前提条件
-- composerインストール済み
-- PHP開発環境導入済み(MAMPなど)
+- composerインストールしてパスを通す
+- PHP開発環境導入済み(MAMP等)
 
 ```
 // CakePHP3インストール(xxxはプロジェクト名)
 composer create-project --prefer-dist cakephp/app xxx
 
-// PHPUnitインストール
-composer require --dev phpunit/phpunit:"^5.7|^6.0"
-
 // Goutteインストール
 composer require fabpot/goutte
+
+// PHPUnitインストール
+composer require --dev phpunit/phpunit:"^5.7|^6.0"
 
 // .gitignore
 vendor/tmpなどバージョン管理対象でないものを指定
@@ -31,34 +28,46 @@ vendor/tmpなどバージョン管理対象でないものを指定
 ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 ```
 
-## RestfulAPI
+## ディレクトリ構成
 
 ```
-・PokemonsAPI
-[GET]DocumentRoot/pokemons/{zukan_no}.json
-
-・SkillsAPI
-[GET]DocumentRoot/skills/{skill_id}.json
-
-・QualitiesAPI
-[GET]DocumentRoot/qualities/{quality_id}.json
+pokemon/
+     ├ src
+        └ Command       - SQLファイル生成コマンド群
+        └ Controller    - API
+            └ Component - スクレイピング
+        └ Model
+            └ Entity    - エンティティー
+            └ Table     - テーブル
 ```
 
 ## スクレイピング
 
-```
-[Pokemons]
+ポケモン基本情報
 - 図鑑No
 - 名前
-- 属性(1/2)
-- 特性(1/2/夢)
+- 属性
+- 特性
 - 種族値(HP/AT/DF/SA/SD/SP)
 
-[Skills]
-- 技
+技情報
+- 名称
+- 属性
+- 威力
+- Z威力
+- PP
+- 分類
+- 命中率
+- 対象
 - 効果
+- Z効果
+- 直接攻撃
+- マジックガード
+- オウムがえし
+- まもる
+- よこどり
+- みがわり貫通
 
-[qualities]
-- 特性
+特性情報
+- 名称
 - 効果
-```

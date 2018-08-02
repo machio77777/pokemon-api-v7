@@ -29,4 +29,15 @@ class CommonComponentTest extends TestCase
         $typeCd2 = $this->Common->convertType('フェアリー');
         $this->assertTextEquals(18, $typeCd2);
     }
+    
+    /**
+     * 特性変換
+     */
+    public function testconvertQuality()
+    {
+        $quality1 = $this->Common->convertQuality('いかく');
+        $this->assertTextEquals(22, $quality1);
+        $quality2 = $this->Common->convertQuality('テスト');
+        $this->assertTextEquals(0, $quality2);
+    }
 }
