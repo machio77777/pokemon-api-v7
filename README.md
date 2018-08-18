@@ -2,7 +2,12 @@
 # Pokémon RestfulAPI By CakePHP3
 - レーティング対戦で必要な各種マスターAPI
 
-## 環境構築
+## 開発環境
+- PHP7.1.19
+- CakePHP3.6
+- Mac / MAMP
+
+## プロジェクト初期化
 
 ```linux
 // CakePHP3インストール(xxxはプロジェクト名)
