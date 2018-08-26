@@ -1,9 +1,9 @@
 
 # Pokémon RestfulAPI By CakePHP3
-- レーティング対戦で必要な各種マスターAPI
+- Various master APIs required for Pokemon rating battle
 
 ## environment
-- PHP7.1.19
+- PHP 7.1.19
 - CakePHP3.6
 - Mac / MAMP
 
