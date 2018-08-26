@@ -1,29 +1,29 @@
 
 # Pokémon RestfulAPI By CakePHP3
-- レーティング対戦で必要な各種マスターAPI
+- Various master APIs required for Pokemon rating battle
 
-## 開発環境
-- PHP7.1.19
+## environment
+- PHP 7.1.19
 - CakePHP3.6
 - Mac / MAMP
 
-## プロジェクト初期化
+## Initialization
 
 ```linux
-// CakePHP3インストール(xxxはプロジェクト名)
+// CakePHP3
 composer create-project --prefer-dist cakephp/app xxx
 
-// Goutteインストール
+// Goutte
 composer require fabpot/goutte
 
-// PHPUnitインストール
+// PHPUnit
 composer require --dev phpunit/phpunit:"^5.7|^6.0"
 
-// MAMPでbakeエラーになる場合
+// MySQL path
 ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 ```
 
-## ディレクトリ構成
+## directory
 
 ```
 pokemon/
@@ -37,10 +37,9 @@ pokemon/
             └ Table     - テーブル
 ```
 
-## スクレイピング
+## scraping
 
 ```php
-// サンプル
 $uri = 'https://yakkun.com/sm/move_list.htm?c=1';
 $crawler = $this->client->request('GET', $uri);
 $elements = $crawler->filter('table.center tr td')->each(function($element){
