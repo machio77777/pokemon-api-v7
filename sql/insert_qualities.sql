@@ -1,3 +1,4 @@
+DELETE FROM Qualities;
 INSERT INTO Qualities (quality_id, quality_name, effect) VALUES (1, 'あくしゅう', '野生ポケモンと出会いにくくなる。攻撃した相手がたまにひるむ。');
 INSERT INTO Qualities (quality_id, quality_name, effect) VALUES (2, 'あめふらし', 'てんきをあめ状態にする。');
 INSERT INTO Qualities (quality_id, quality_name, effect) VALUES (3, 'かそく', '毎ターンすばやさが1段階上がる。');

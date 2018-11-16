@@ -1,3 +1,4 @@
+DELETE FROM Skills;
 INSERT INTO Skills (skill_id, name, type_id, power, zpower, pp, classification, accuracy, target, effect, direct_attack, mamoru) VALUES (1, 'アームハンマー', 7, 100, 180, 10, '物理', 90, '1体選択', '攻撃後、自分の『すばやさ』ランクが1段階下がる。特性『てつのこぶし』の時、威力が1.2倍になる。', '直○', '守○');
 INSERT INTO Skills (skill_id, name, type_id, power, zpower, pp, classification, accuracy, target, effect, direct_attack, mamoru) VALUES (2, 'アイアンテール', 17, 100, 180, 15, '物理', 75, '1体選択', '30%の確率で相手の『ぼうぎょ』ランクを1段階下げる。', '直○', '守○');
 INSERT INTO Skills (skill_id, name, type_id, power, zpower, pp, classification, accuracy, target, effect, direct_attack, mamoru) VALUES (3, 'アイアンヘッド', 17, 80, 160, 15, '物理', 100, '1体選択', '30%の確率で相手をひるませる。', '直○', '守○');
