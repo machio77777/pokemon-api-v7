@@ -49,7 +49,7 @@ CREATE TABLE SKILLS (
   skill_id int(4) NOT NULL COMMENT '技ID',
   skill_name varchar(30) NOT NULL COLLATE utf8mb4_bin COMMENT '技名',
   type_id int(4) COMMENT '属性ID',
-  power int(4) COMMENT '威力',,
+  power int(4) COMMENT '威力',
   pp int(4) COMMENT 'PP',
   classification varchar(10) COMMENT '分類',
   accuracy int(4) COMMENT '命中率',
