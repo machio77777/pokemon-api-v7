@@ -1,24 +1,30 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Api\Master;
 
-use App\Controller\AppController;
+use App\Controller\ApiController;
 
 /**
- * Pokemons Controller
+ * QualitiesController
  */
-class PokemonsController extends AppController
+class QualitiesController extends ApiController
 {
     /**
-     * Pokemons GET
-     * @param integer $zukanNo 図鑑No
+     * 特性一覧取得
+     * @return JSONレスポンス
      */
-    public function view($zukanNo = null)
+    public function getList()
     {
-        $pokemon = $this->Pokemons
-                ->find()
-                ->where(['zukan_no' => $zukanNo]);
-        
-        $this->set(compact('pokemon'));
-        $this->set('_serialize', 'pokemon');
+        return $this->response200("json api qualities get");
     }
+    
+    /**
+     * 特性取得
+     * @param  string $qualityId 特性ID
+     * @return JSONレスポンス
+     */
+    public function get($qualityId)
+    {
+        return $this->response200("json api quality get");
+    }
+    
 }

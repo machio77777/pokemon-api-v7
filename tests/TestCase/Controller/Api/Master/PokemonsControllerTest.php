@@ -1,18 +1,43 @@
 <?php
-namespace App\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller\Api\Master;
 
-use App\Controller\PokemonsController;
-use Cake\TestSuite\IntegrationTestCase;
+use App\Test\TestCase\Controller\Api\BaseControllerTest;
 
 /**
  * PokemonsControllerTestクラス
+ * 
+ * [実行コマンド]
+ * vendor/bin/phpunit tests/TestCase/Controller/Api/Master/PokemonsControllerTest.php
  */
-class PokemonsControllerTest extends IntegrationTestCase
+class PokemonsControllerTest extends BaseControllerTest
 {
     /**
-     * Pokemons GET
+     * ポケモン図鑑一覧取得
      */
-    public function testView()
+    public function testgetList()
     {
+        // 正常系
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons');
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
+    }
+    
+    /**
+     * ポケモン図鑑取得
+     */
+    public function testget()
+    {
+        // 正常系
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/150/150');
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
+    }
+    
+    /**
+     * ポケモン別に覚える技一覧取得
+     */
+    public function testgetSkills()
+    {
+        // 正常系
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/150/150/skills');
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
 }

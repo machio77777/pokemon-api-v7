@@ -1,18 +1,16 @@
 <?php
-namespace App\Test\TestCase\Controller;
+namespace App\Test\TestCase\Controller\Api;
 
-use App\Controller\PokemonsController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * PokemonsControllerTestクラス
+ * BaseControllerTestクラス
  */
-class PokemonsControllerTest extends IntegrationTestCase
+class BaseControllerTest extends IntegrationTestCase
 {
-    /**
-     * Pokemons GET
-     */
-    public function testView()
-    {
-    }
+    CONST API_REVISION_V1 = '/api/v1';
+    
+    CONST HTTP_CODE_OK = 200;
+    CONST HTTP_CODE_VALIDATION_ERROR = 400;
+    CONST HTTP_CODE_SERVICE_UNAVALIABLE = 503;
 }

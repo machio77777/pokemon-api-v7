@@ -1,24 +1,42 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Api\Master;
 
-use App\Controller\AppController;
+use App\Controller\ApiController;
 
 /**
- * Pokemons Controller
+ * PokemonsController
  */
-class PokemonsController extends AppController
+class PokemonsController extends ApiController
 {
     /**
-     * Pokemons GET
-     * @param integer $zukanNo 図鑑No
+     * ポケモン図鑑一覧取得
+     * @return JSONレスポンス
      */
-    public function view($zukanNo = null)
+    public function getList()
     {
-        $pokemon = $this->Pokemons
-                ->find()
-                ->where(['zukan_no' => $zukanNo]);
-        
-        $this->set(compact('pokemon'));
-        $this->set('_serialize', 'pokemon');
+        return $this->response200("json api pokemons get");
     }
+    
+    /**
+     * ポケモン図鑑取得
+     * @param  string $zukanNo 図鑑No
+     * @param  string $subNo   図鑑サブNo
+     * @return JSONレスポンス
+     */
+    public function get($zukanNo, $subNo)
+    {
+        return $this->response200("json api pokemon get");
+    }
+    
+    /**
+     * ポケモン別に覚える技一覧取得
+     * @param  string $zukanNo 図鑑No
+     * @param  string $subNo   図鑑サブNo
+     * @return JSONレスポンス
+     */
+    public function getSkills($zukanNo, $subNo)
+    {
+        return $this->response200("json api skills get");
+    }
+    
 }
