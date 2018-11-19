@@ -1,17 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\SkillsController;
+use App\Controller\PokemonsController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * SkillsControllerTestクラス
+ * PokemonsControllerTestクラス
  */
-class SkillsControllerTest extends IntegrationTestCase
+class PokemonsControllerTest extends IntegrationTestCase
 {
-
     /**
-     * Skills GET
+     * Pokemons GET
      */
     public function testView()
     {
