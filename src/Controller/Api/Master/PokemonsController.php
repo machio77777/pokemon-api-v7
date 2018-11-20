@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Master;
 
 use App\Controller\Api\ApiController;
+use App\Model\Master\PokemonsModel;
 
 /**
  * PokemonsController
@@ -14,7 +15,11 @@ class PokemonsController extends ApiController
      */
     public function getList()
     {
-        return $this->response200("json api pokemons get");
+        $pokemons = $this->createPokemonsModel()->getList();
+        if ($pokemons === false) {
+            return $this->response503();
+        }
+        return $this->response200($pokemons);
     }
     
     /**
@@ -25,7 +30,11 @@ class PokemonsController extends ApiController
      */
     public function get($zukanNo, $subNo)
     {
-        return $this->response200("json api pokemon get");
+        $pokemon = $this->createPokemonsModel()->get($zukanNo, $subNo);
+        if ($pokemon === false) {
+            return $this->response503();
+        }
+        return $this->response200($pokemon);
     }
     
     /**
@@ -37,6 +46,11 @@ class PokemonsController extends ApiController
     public function getSkills($zukanNo, $subNo)
     {
         return $this->response200("json api skills get");
+    }
+    
+    private function createPokemonsModel()
+    {
+        return new PokemonsModel();
     }
     
 }
