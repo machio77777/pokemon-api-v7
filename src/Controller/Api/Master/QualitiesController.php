@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller\Api\Master;
 
-use App\Controller\ApiController;
+use App\Controller\Api\ApiController;
 
 /**
  * QualitiesController
