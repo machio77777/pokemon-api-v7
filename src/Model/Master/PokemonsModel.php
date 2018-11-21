@@ -41,28 +41,33 @@ SQL;
     {
         $sql = <<< SQL
 SELECT 
-  zukan_no AS zukanNo,
-  sub_no AS subNo,
-  name AS name, 
-  type_id1 AS type1,
-  type_id2 AS type2,
-  quality_id1 AS quality1,
-  quality_id2 AS quality2,
-  dream_quality_id AS dreamQuality,
-  hp AS hp,
-  at AS at,
-  df AS df,
-  sa AS sa,
-  sd AS sd,
-  sp AS sp, 
-  mega_flg AS megaFlg 
+  po.zukan_no AS zukanNo,
+  po.sub_no AS subNo,
+  po.name AS name, 
+  ty1.type_name1 AS type1,
+  ty2.type_name1 AS type2,
+  p1.quality_name AS quality1,
+  p2.quality_name AS quality2,
+  p3.quality_name AS dreamQuality,
+  po.hp AS hp,
+  po.at AS at,
+  po.df AS df,
+  po.sa AS sa,
+  po.sd AS sd,
+  po.sp AS sp, 
+  po.mega_flg AS megaFlg 
 FROM 
-  POKEMONS 
+  POKEMONS po
+INNER JOIN TYPES ty1 ON po.type_id1 = ty1.type_id 
+LEFT OUTER JOIN TYPES ty2 ON po.type_id2 = ty2.type_id 
+INNER JOIN QUALITIES p1 ON po.quality_id1 = p1.quality_id 
+LEFT OUTER JOIN QUALITIES p2 ON po.quality_id2 = p2.quality_id 
+LEFT OUTER JOIN QUALITIES p3 ON po.dream_quality_id = p3.quality_id 
 WHERE 
-    zukan_no =:zukanNo 
-AND sub_no =:subNo 
-AND delete_flg = 0 
-ORDER BY zukan_no, sub_no
+    po.zukan_no =:zukanNo
+AND po.sub_no =:subNo
+AND po.delete_flg = 0 
+ORDER BY po.zukan_no, po.sub_no
 SQL;
         try {
             $pokemon = $this->con->execute($sql, ['zukanNo' => $zukanNo, 'subNo' => $subNo])->fetchAll('assoc');

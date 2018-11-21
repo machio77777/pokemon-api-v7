@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Master;
 
 use App\Controller\Api\ApiController;
+use App\Model\Master\SkillsModel;
 
 /**
  * SkillsController
@@ -14,7 +15,11 @@ class SkillsController extends ApiController
      */
     public function getList()
     {
-        return $this->response200("json api skills get");
+        $skills = $this->createSkillsModel()->getList();
+        if ($skills === false) {
+            return $this->response503();
+        }
+        return $this->response200($skills);
     }
     
     /**
@@ -24,7 +29,20 @@ class SkillsController extends ApiController
      */
     public function get($skillId)
     {
-        return $this->response200("json api skill get");
+        $skill = $this->createSkillsModel()->get($skillId);
+        if ($skill === false) {
+            return $this->response503();
+        }
+        return $this->response200($skill);
+    }
+    
+    /**
+     * SkillsModel生成
+     * @return SkillsModel
+     */
+    private function createSkillsModel()
+    {
+        return new SkillsModel();
     }
     
 }

@@ -43,7 +43,11 @@ class PokemonsControllerTest extends BaseControllerTest
         $this->assertEquals("150", $res['zukanNo']);
         $this->assertEquals("1", $res['subNo']);
         $this->assertEquals("ミュウツー", $res['name']);
-        // TODO 属性 + 特性の名称チェックが必要
+        $this->assertEquals("エスパー", $res['type1']);
+        $this->assertEquals(null, $res['type2']);
+        $this->assertEquals("プレッシャー", $res['quality1']);
+        $this->assertEquals(null, $res['quality2']);
+        $this->assertEquals("きんちょうかん", $res['dreamQuality']);
         $this->assertEquals("106", $res['hp']);
         $this->assertEquals("110", $res['at']);
         $this->assertEquals("90", $res['df']);

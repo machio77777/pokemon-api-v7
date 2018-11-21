@@ -48,6 +48,10 @@ class PokemonsController extends ApiController
         return $this->response200("json api skills get");
     }
     
+    /**
+     * PokemonsModel生成
+     * @return PokemonsModel
+     */
     private function createPokemonsModel()
     {
         return new PokemonsModel();

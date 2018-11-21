@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Master;
 
 use App\Controller\Api\ApiController;
+use App\Model\Master\QualitiesModel;
 
 /**
  * QualitiesController
@@ -14,7 +15,11 @@ class QualitiesController extends ApiController
      */
     public function getList()
     {
-        return $this->response200("json api qualities get");
+        $qualities = $this->createQualitiesModel()->getList();
+        if ($qualities === false) {
+            return $this->response503();
+        }
+        return $this->response200($qualities);
     }
     
     /**
@@ -24,7 +29,20 @@ class QualitiesController extends ApiController
      */
     public function get($qualityId)
     {
-        return $this->response200("json api quality get");
+        $quality = $this->createQualitiesModel()->get($qualityId);
+        if ($quality === false) {
+            return $this->response503();
+        }
+        return $this->response200($quality);
+    }
+    
+    /**
+     * QualitiesModel生成
+     * @return QualitiesModel
+     */
+    private function createQualitiesModel()
+    {
+        return new QualitiesModel();
     }
     
 }
