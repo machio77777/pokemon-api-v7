@@ -31,7 +31,7 @@ SQL;
     /**
      * 特性取得
      * @param  integer $qualityId 特性ID
-     * @return ポケモン図鑑
+     * @return 特性
      */
     public function get($qualityId)
     {
