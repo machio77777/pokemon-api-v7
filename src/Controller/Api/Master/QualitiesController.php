@@ -42,7 +42,7 @@ class QualitiesController extends ApiController
      */
     private function createQualitiesModel()
     {
-        return new QualitiesModel();
+        return new QualitiesModel($this->logger);
     }
     
 }

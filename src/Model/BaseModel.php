@@ -8,8 +8,11 @@ class BaseModel {
     
     protected $con;
     
-    public function __construct()
+    protected $logger;
+    
+    public function __construct($logger)
     {
+        $this->logger = $logger;
         $this->con = ConnectionManager::get('default');
     }
 }

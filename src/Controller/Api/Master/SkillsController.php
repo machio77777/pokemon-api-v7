@@ -42,7 +42,7 @@ class SkillsController extends ApiController
      */
     private function createSkillsModel()
     {
-        return new SkillsModel();
+        return new SkillsModel($this->logger);
     }
     
 }

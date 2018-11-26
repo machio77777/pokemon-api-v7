@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Master;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\Master\QualitiesModel;
+use App\Common\ApiLogger;
 
 /**
  * QualitiesModelTestクラス
@@ -21,7 +22,7 @@ class QualitiesModelTest extends TestCase {
     {
         parent::setUp();
         $this->qualities = TableRegistry::get('Qualities');
-        $this->qualitiesModel = new QualitiesModel();
+        $this->qualitiesModel = new QualitiesModel(new ApiLogger());
     }
     
     /**

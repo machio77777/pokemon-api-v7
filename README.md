@@ -19,6 +19,9 @@ composer require fabpot/goutte
 // PHPUnit
 composer require --dev phpunit/phpunit:"^5.7|^6.0"
 
+// monolog
+composer require monolog/monolog
+
 // MySQL path
 ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 ```
