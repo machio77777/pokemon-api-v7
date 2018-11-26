@@ -25,7 +25,7 @@ class QualitiesModelTest extends TestCase {
     }
     
     /**
-     * ポケモン図鑑一覧取得
+     * 特性一覧取得
      */
     public function testgetList()
     {
@@ -36,7 +36,7 @@ class QualitiesModelTest extends TestCase {
     }
     
     /**
-     * ポケモン図鑑取得
+     * 特性取得
      */
     public function testget()
     {

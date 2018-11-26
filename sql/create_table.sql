@@ -54,7 +54,7 @@ CREATE TABLE SKILLS (
   pp int(4) COMMENT 'PP',
   classification varchar(10) COMMENT '分類',
   accuracy int(4) COMMENT '命中率',
-  target int(4) COMMENT '対象',
+  target varchar(10) COMMENT '対象',
   effect varchar(500) NOT NULL COLLATE utf8mb4_bin COMMENT '効果',  
   direct_attack varchar(10) COMMENT '直接攻撃',
   mamoru varchar(10) COMMENT 'まもる',
