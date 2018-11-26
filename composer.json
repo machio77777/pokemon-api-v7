@@ -11,7 +11,8 @@
         "cakephp/plugin-installer": "^1.0",
         "fabpot/goutte": "^3.2",
         "josegonzalez/dotenv": "3.*",
-        "mobiledetect/mobiledetectlib": "2.*"
+        "mobiledetect/mobiledetectlib": "2.*",
+        "monolog/monolog": "^1.24"
     },
     "require-dev": {
         "cakephp/bake": "^1.1",

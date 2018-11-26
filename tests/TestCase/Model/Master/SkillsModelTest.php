@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Master;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\Master\SkillsModel;
+use App\Common\ApiLogger;
 
 /**
  * SkillsModelTestクラス
@@ -21,7 +22,7 @@ class SkillsModelTest extends TestCase {
     {
         parent::setUp();
         $this->skills = TableRegistry::get('Skills');
-        $this->skillsModel = new SkillsModel();
+        $this->skillsModel = new SkillsModel(new ApiLogger());
     }
     
     /**

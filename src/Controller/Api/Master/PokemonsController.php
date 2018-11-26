@@ -54,7 +54,7 @@ class PokemonsController extends ApiController
      */
     private function createPokemonsModel()
     {
-        return new PokemonsModel();
+        return new PokemonsModel($this->logger);
     }
     
 }

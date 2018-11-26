@@ -24,6 +24,7 @@ SQL;
         try {
             return $this->con->execute($sql)->fetchAll('assoc');
         } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
             return false;
         }
     }
@@ -64,6 +65,7 @@ SQL;
                 return null;
             }
         } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
             return false;
         }
     }

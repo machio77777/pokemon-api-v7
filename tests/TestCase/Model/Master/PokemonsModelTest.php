@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Model\Master;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\Master\PokemonsModel;
+use App\Common\ApiLogger;
 
 /**
  * PokemonsModelクラス
@@ -21,7 +22,7 @@ class PokemonsModelTest extends TestCase {
     {
         parent::setUp();
         $this->pokemons = TableRegistry::get('Pokemons');
-        $this->pokemonsModel = new PokemonsModel();
+        $this->pokemonsModel = new PokemonsModel(new ApiLogger());
     }
     
     /**
