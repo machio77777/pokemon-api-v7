@@ -7,6 +7,9 @@ use Cake\TestSuite\TestCase;
 
 /**
  * Skillsコンポーネントテストクラス
+ * 
+ * [実行コマンド]
+ * vendor/bin/phpunit tests/TestCase/Controller/Component/SkillsComponentTest.php
  */
 class SkillsComponentTest extends TestCase
 {

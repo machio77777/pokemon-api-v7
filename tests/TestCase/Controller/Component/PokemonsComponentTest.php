@@ -7,6 +7,9 @@ use Cake\TestSuite\TestCase;
 
 /**
  * Pokemonsコンポーネントテストクラス
+ * 
+ * [実行コマンド]
+ * vendor/bin/phpunit tests/TestCase/Controller/Component/PokemonsComponentTest.php
  */
 class PokemonsComponentTest extends TestCase
 {
@@ -58,6 +61,7 @@ class PokemonsComponentTest extends TestCase
         
         $pokemons = $this->Pokemons->collectSkillsByPokemon(1, 2);
         $this->assertTextEquals("たいあたり", $pokemons[1][0]);
-        $this->assertTextEquals("はっぱカッター", $pokemons[1][8]);
+        $this->assertTextEquals("なきごえ", $pokemons[1][1]);
+        $this->assertTextEquals("やどりぎのタネ", $pokemons[1][2]);
     }
 }

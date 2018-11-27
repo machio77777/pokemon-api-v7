@@ -7,6 +7,9 @@ use Cake\TestSuite\TestCase;
 
 /**
  * Qualitiesコンポーネントテストクラス
+ * 
+ * [実行コマンド]
+ * vendor/bin/phpunit tests/TestCase/Controller/Component/QualitiesComponentTest.php
  */
 class QualitiesComponentTest extends TestCase
 {
