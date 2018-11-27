@@ -6,25 +6,29 @@ use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
+use Cake\ORM\TableRegistry;
+
 use Cake\Filesystem\File;
 use Cake\Controller\ComponentRegistry;
 use App\Controller\Component\PokemonsComponent;
-use App\Controller\Component\CommonComponent;
 
 /**
- * PokemonsInsert command.
+ * PokemonsSkillCommand command.
+ * 
+ * [実行コマンド]
+ * bin/cake pokemons_skill
  */
-class PokemonsInsertCommand extends Command
+class PokemonsSkillCommand extends Command
 {
     private $Pokemons;
-    private $Common;
+    private $skills;
     
     public function initialize()
     {
         parent::initialize();
         $registry = new ComponentRegistry();
         $this->Pokemons = new PokemonsComponent($registry);
-        $this->Common = new CommonComponent($registry);
+        $this->skills = TableRegistry::get('Skills');
     }
     
     public function buildOptionParser(ConsoleOptionParser $parser)
@@ -33,46 +37,42 @@ class PokemonsInsertCommand extends Command
     }
     
     /**
-     * Pokemons InsertSQL
+     * PokemonsSkill InsertSQL
      * @param Arguments $args
      * @param ConsoleIo $io
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $pokemons = $this->Pokemons->collectBasicInfo();
-        $sqlfile = new File(SQL . 'insert_pokemons.sql', true);
+        $start = 1;
+        $end   = 2;
+        $skillNames = $this->initMaster($this->skills->find()->enableHydration(false)->toArray());
         
-        $max = count($pokemons);
-        $beforeNo = 0;
-        $cnt = 1;
+        $pokemons = $this->Pokemons->collectSkillsByPokemon($start, $end);
+        $sqlfile = new File(SQL . 'insert_pokemonsskill.sql', true);
         
-        for ($i = 0; $i < $max; $i++) {
-            
-            $zukan_no = intval($pokemons[$i][0]);
-            $name = $pokemons[$i][1];
-            $type_id1 = $this->Common->convertType($pokemons[$i][2]);
-            
-            if (isset($pokemons[$i][3])) {
-                $type_id2 = $this->Common->convertType($pokemons[$i][3]);
-            } else {
-                $type_id2 = "''";
+        foreach ($pokemons as $pokemonSkills) {
+            foreach ($pokemonSkills as $pokemonSkill) {
+                $skillId = $skillNames[$pokemonSkill];
+                $values = "{$start}, 1, {$skillId}, 0";
+                $sql = "INSERT INTO Pokemons (zukan_no, sub_no, skill_id) VALUES ({$values});\n";
+                $sqlfile->write($sql);
             }
-            
-            if ($zukan_no === $beforeNo) {
-                $cnt++;
-            } else {
-                $cnt = 1;
-            }
-            
-            $sub_no = $cnt;
-            
-            $values = "{$zukan_no}, {$sub_no}, '{$name}', {$type_id1}, {$type_id2}";
-            $sql = "INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2) VALUES ({$values});\n";
-            $sqlfile->write($sql);
-            
-            $beforeNo = $zukan_no;
+            $start++;
         }
-        
         $io->out("Pokemons Insert Successful");
+    }
+    
+    /**
+     * 技名リスト化
+     * @param  array $skills
+     * @return array $skillNames
+     */
+    private function initMaster($skills)
+    {
+        $skillNames = [];
+        foreach ($skills as $skill) {
+            $skillNames[$skill['skill_name']] = $skill['skill_id'];
+        }
+        return $skillNames;
     }
 }
