@@ -7,6 +7,9 @@ use Cake\TestSuite\TestCase;
 
 /**
  * CommonComponentテストクラス
+ * 
+ * [実行コマンド]
+ * vendor/bin/phpunit tests/TestCase/Controller/Component/CommonComponentTest.php
  */
 class CommonComponentTest extends TestCase
 {

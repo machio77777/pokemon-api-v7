@@ -4,7 +4,11 @@ DROP TABLE IF EXISTS QUALITIES CASCADE;
 DROP TABLE IF EXISTS SKILLS CASCADE;
 DROP TABLE IF EXISTS TRICKS CASCADE;
 DROP TABLE IF EXISTS TYPEMATRIX CASCADE;
+DROP TABLE IF EXISTS PBATTLES CASCADE;
+DROP TABLE IF EXISTS ROLETARGETS CASCADE;
+DROP TABLE IF EXISTS COMPATIBILITIES CASCADE;
 
+-- ポケモン基本情報
 CREATE TABLE POKEMONS (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   zukan_no int(5) NOT NULL COMMENT '図鑑No',
@@ -26,6 +30,7 @@ CREATE TABLE POKEMONS (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT 'ポケモン基本情報';
 
+-- 属性
 CREATE TABLE TYPES (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   type_id int(4) NOT NULL COMMENT '属性',
@@ -35,6 +40,7 @@ CREATE TABLE TYPES (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '属性';
 
+-- 特性
 CREATE TABLE QUALITIES (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   quality_id int(4) NOT NULL COMMENT '特性ID',
@@ -44,6 +50,7 @@ CREATE TABLE QUALITIES (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '特性';
 
+-- 技
 CREATE TABLE SKILLS (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   skill_id int(4) NOT NULL COMMENT '技ID',
@@ -62,14 +69,16 @@ CREATE TABLE SKILLS (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '技';
 
+-- ポケモン毎の覚える技
 CREATE TABLE TRICKS (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   zukan_no int(5) NOT NULL COMMENT '図鑑No',
   skill_id int(4) NOT NULL COMMENT '技ID',
   delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT 'ポケモン別の覚える技';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT 'ポケモン毎の覚える技';
 
+-- 属性別相性
 CREATE TABLE TYPEMATRIX (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   type_id int(4) NOT NULL COMMENT '属性ID',
@@ -78,3 +87,55 @@ CREATE TABLE TYPEMATRIX (
   delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '属性別相性';
+
+-- ポケモン対戦用育成済み
+CREATE TABLE PBATTLES (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  soldier_id int(11) NOT NULL COMMENT '育成ID',
+  zukan_no int(5) NOT NULL COMMENT '図鑑No',
+  sub_no int(2) NOT NULL COMMENT 'サブNo',
+  personality VARCHAR(20) NOT NULL COMMENT '性格',
+  quality_id int(4) COMMENT '特性',
+  skill_id1 int(4) COMMENT '技1',
+  skill_id2 int(4) COMMENT '技2',
+  skill_id3 int(4) COMMENT '技3',
+  skill_id4 int(4) COMMENT '技4',
+  ehp int(4) COMMENT '努力値-HP',
+  eat int(4) COMMENT '努力値-攻撃',
+  edf int(4) COMMENT '努力値-防御',
+  esa int(4) COMMENT '努力値-特攻',
+  esd int(4) COMMENT '努力値-特防',
+  esp int(4) COMMENT '努力値-素早さ',
+  ahp int(4) COMMENT '実数値-HP',
+  aat int(4) COMMENT '実数値-攻撃',
+  adf int(4) COMMENT '実数値-防御',
+  asa int(4) COMMENT '実数値-特攻',
+  asd int(4) COMMENT '実数値-特防',
+  asp int(4) COMMENT '実数値-素早さ',
+  delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT 'ポケモン対戦用育成済み';
+
+-- 役割対象
+CREATE TABLE ROLETARGETS (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  zukan_no int(5) NOT NULL COMMENT '図鑑No',
+  sub_no int(2) NOT NULL COMMENT 'サブNo',
+  detail_no int(11) NOT NULL COMMENT '明細No',
+  target_zukan_no int(5) NOT NULL COMMENT '役割対象図鑑No',
+  target_sub_no int(2) NOT NULL COMMENT '役割対象サブNo',
+  delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '役割対象';
+
+-- 相性補完
+CREATE TABLE COMPATIBILITIES (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  support_id int(11) NOT NULL COMMENT '相性補完ID',
+  target1_zukan_no int(5) NOT NULL COMMENT '対象1図鑑No',
+  target1_sub_no int(2) NOT NULL COMMENT '対象1サブNo',
+  target2_zukan_no int(5) NOT NULL COMMENT '対象2図鑑No',
+  target2_sub_no int(2) NOT NULL COMMENT '対象2サブNo',
+  delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT '相性補完';

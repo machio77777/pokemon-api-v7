@@ -148,8 +148,8 @@ class PokemonsComponent extends Component
     
     /**
      * 覚える技スクレイピング
-     * @param int $start
-     * @param int $end
+     * @param  int   $start
+     * @param  int   $end
      * @return array $pokemons
      */
     public function collectSkillsByPokemon(int $start, int $end)
@@ -158,25 +158,19 @@ class PokemonsComponent extends Component
             return false;
         }
         
-        $pokemons = array();
-        
+        $pokemons = [];
         for ($i = $start; $i < $end; $i++) {
-            
             $uri = self::POKEMON_KORYAKU . "sm/zukan/n{$i}";
             $crawler = $this->client->request('GET', $uri);
-            $pokemon = array();
-            
-            $skills = $crawler->filter('tr.move_main_row td a')->each(function($element) {
-                return $element->text();
-            });
-            
-            $isSkipval = "遺伝経路";
-            foreach ($skills as $skill) {
-                if ($isSkipval !== $skill) {
-                    $pokemon[] = trim($skill);
+            $elements = $crawler->filter('tr.move_main_row td.move_name_cell')->each(function($element){
+                if (strpos($element->text(), '[') !== false) {
+                    return explode('[', $element->text())[0];
+                } else {
+                    return str_replace(['New!', 'USUM', 'SM'], '', $element->text());
                 }
-            }
-            $pokemons[$i] = $pokemon;
+            });
+            $skills = array_unique($elements);
+            $pokemons[$start] = $skills;
         }
         return $pokemons;
     }
