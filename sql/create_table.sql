@@ -73,6 +73,7 @@ CREATE TABLE SKILLS (
 CREATE TABLE TRICKS (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   zukan_no int(5) NOT NULL COMMENT '図鑑No',
+  sub_no int(2) NOT NULL COMMENT 'サブNo',
   skill_id int(4) NOT NULL COMMENT '技ID',
   delete_flg int(1) DEFAULT 0 NOT NULL COMMENT '削除FLG',
   PRIMARY KEY (`id`)
