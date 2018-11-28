@@ -43,12 +43,12 @@ class PokemonsSkillCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $start = 1;
-        $end   = 2;
+        $start = 61;
+        $end   = 91;
         $skillNames = $this->initMaster($this->skills->find()->enableHydration(false)->toArray());
         
         $pokemons = $this->Pokemons->collectSkillsByPokemon($start, $end);
-        $sqlfile = new File(SQL . 'insert_pokemonsskill.sql', true);
+        $sqlfile = new File(SQL . 'insert_pokemonsskill_kanto.sql', true);
         
         foreach ($pokemons as $pokemonSkills) {
             foreach ($pokemonSkills as $pokemonSkill) {
