@@ -170,7 +170,7 @@ class PokemonsComponent extends Component
                 }
             });
             $skills = array_unique($elements);
-            $pokemons[$start] = $skills;
+            $pokemons[$i] = $skills;
         }
         return $pokemons;
     }
