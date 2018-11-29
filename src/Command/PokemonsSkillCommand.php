@@ -43,18 +43,18 @@ class PokemonsSkillCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $start = 61;
-        $end   = 91;
+        $start = 341;
+        $end   = 387;
         $skillNames = $this->initMaster($this->skills->find()->enableHydration(false)->toArray());
         
         $pokemons = $this->Pokemons->collectSkillsByPokemon($start, $end);
-        $sqlfile = new File(SQL . 'insert_pokemonsskill_kanto.sql', true);
+        $sqlfile = new File(SQL . 'insert_pokemonsskill_houen.sql', true);
         
         foreach ($pokemons as $pokemonSkills) {
             foreach ($pokemonSkills as $pokemonSkill) {
                 $skillId = $skillNames[$pokemonSkill];
                 $values = "{$start}, 1, {$skillId}, 0";
-                $sql = "INSERT INTO Pokemons (zukan_no, sub_no, skill_id) VALUES ({$values});\n";
+                $sql = "INSERT INTO Pokemons (zukan_no, sub_no, skill_id, delete_flg) VALUES ({$values});\n";
                 $sqlfile->write($sql);
             }
             $start++;
