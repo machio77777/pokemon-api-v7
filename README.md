@@ -1,6 +1,15 @@
 
-# Pokémon RestfulAPI By CakePHP3
-- Various master APIs required for Pokemon rating battle
+# Pokémon's API
+
+Rest API for Pokemon 7th Generation.
+
+## Description
+
+Pokemon Rate Provides various kinds of information required for battle.
+
+Provides basic information such as Pokemon's tribal value, remembering technique, characteristic.
+
+We also provide data that matches rate battle, such as breeding data, role subjects, complementary complement.
 
 ## environment
 - PHP 7.1.19
