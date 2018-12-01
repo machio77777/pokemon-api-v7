@@ -1702,3 +1702,9 @@ INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (475, 2, 'メガエルレイド', 11, 7, 68, 165, 95, 65, 115, 110, 39, 0, 0, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (531, 2, 'メガタブンネ', 1, 18, 103, 60, 126, 80, 126, 50, 131, 0, 0, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (719, 2, 'メガディアンシー', 13, 18, 50, 160, 110, 160, 110, 110, 156, 0, 0, 1);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (641, 2, 'トルネロス(れいじゅう)', 10, 0, 79, 100, 80, 110, 90, 121, 144, 0, 0, 0);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (642, 2, 'ボルトロス(れいじゅう)', 4, 10, 79, 105, 70, 145, 80, 101, 10, 0, 0, 0);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (645, 2, 'ランドロス(れいじゅう)', 9, 10, 89, 145, 90, 105, 80, 91, 22, 0, 0, 0);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (774, 2, 'メテノ(コア)', 13, 10, 60, 100, 60, 100, 60, 120, 197, 0, 0, 0);
+
+
