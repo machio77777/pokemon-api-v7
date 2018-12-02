@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Model\Battle;
+namespace App\Model\Traning;
 
 use App\Model\BaseModel;
 use \Exception;
 
-class SupportsModel extends BaseModel {
+class RoleTargetsModel extends BaseModel {
     
     /**
-     * 相性補完一覧取得
+     * 役割対象一覧取得
      * @return 技一覧
      */
     public function getList()
@@ -17,41 +17,31 @@ class SupportsModel extends BaseModel {
     }
     
     /**
-     * 相性補完登録
-     * @param  array $support
+     * 役割対象登録
+     * @param  array $roleTarget
      * @return boolean
      */
-    public function add($support)
+    public function add($roleTarget)
     {
         return true;
     }
     
     /**
-     * 相性補完取得
-     * @param  integer $supportId 相性補完ID
-     * @return 技
-     */
-    public function get($supportId)
-    {
-        return [];
-    }
-    
-    /**
-     * 相性補完更新
-     * @param  array $support
+     * 役割対象更新
+     * @param  array $roleTarget
      * @return boolean
      */
-    public function update($support)
+    public function update($roleTarget)
     {
         return true;
     }
     
     /**
-     * 相性補完削除
-     * @param  integer $supportId 相性補完ID
+     * 役割対象削除
+     * @param  integer $targetId 対象ID
      * @return boolean
      */
-    public function delete($supportId)
+    public function delete($targetId)
     {
         return true;
     }
