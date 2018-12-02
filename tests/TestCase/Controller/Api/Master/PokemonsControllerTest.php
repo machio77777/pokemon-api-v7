@@ -63,7 +63,12 @@ class PokemonsControllerTest extends BaseControllerTest
     public function testgetSkills()
     {
         // 正常系
-        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/150/150/skills');
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/skills');
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
+        
+        // レスポンスボディー
+        $res = json_decode($this->_response->getBody(), true)['data'];
+        $this->assertEquals("314", $res[0]['skillId']);
+        $this->assertEquals("439", $res[1]['skillId']);
     }
 }

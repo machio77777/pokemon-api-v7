@@ -82,4 +82,30 @@ SQL;
             return false;
         }
     }
+    
+    /**
+     * ポケモン別の覚える技一覧取得
+     * @param  string $zukanNo 図鑑No
+     * @param  string $subNo   明細No
+     * @return 覚える技
+     */
+    public function getSkills($zukanNo, $subNo)
+    {
+        $sql = <<< SQL
+SELECT 
+  skill_id AS skillId 
+FROM 
+  TRICKS 
+WHERE 
+    zukan_no=:zukanNo 
+AND sub_no=:subNo
+AND delete_flg = 0
+SQL;
+        try {
+            return $this->con->execute($sql, ['zukanNo' => $zukanNo, 'subNo' => $subNo])->fetchAll('assoc');
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
+    }
 }
