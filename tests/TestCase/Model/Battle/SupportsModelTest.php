@@ -1,61 +1,73 @@
 <?php
 
-namespace App\Test\TestCase\Model\Master;
+namespace App\Test\TestCase\Model\Battle;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use App\Model\Master\SkillsModel;
+use App\Model\Battle\SupportsModel;
 use App\Common\ApiLogger;
 
 /**
- * SkillsModelTestクラス
+ * SupportsModelTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Model/Master/SkillsModelTest.php
+ * vendor/bin/phpunit tests/TestCase/Model/Battle/SupportsModelTest.php
  */
-class SkillsModelTest extends TestCase {
+class SupportsModelTest extends TestCase {
     
-    private $skillsModel;
-    private $skills;
+    private $supportsModel;
+    private $compatibilities;
     
     public function setup()
     {
         parent::setUp();
-        $this->skills = TableRegistry::get('Skills');
-        $this->skillsModel = new SkillsModel(new ApiLogger());
+        $this->compatibilities = TableRegistry::get('Compatibilities');
+        $this->supportsModel = new SupportsModel(new ApiLogger());
     }
     
     /**
-     * 技一覧取得
+     * 相性補完一覧取得
      */
     public function testgetList()
     {
         // 正常系パターン
-        $skill = $this->skillsModel->getList()[0];
-        $this->assertEquals("1", $skill['skillId']);
-        $this->assertEquals("アームハンマー", $skill['skillName']);
+        $supports = $this->supportsModel->getList();
+        $this->assertEquals([], $supports);
     }
     
     /**
-     * 技取得
+     * 相性補完登録
+     */
+    public function testadd()
+    {
+        // 正常系
+        $this->assertTrue($this->supportsModel->add([]));
+    }
+    
+    /**
+     * 相性補完取得
      */
     public function testget()
     {
         // NULLパターン
-        $this->assertEquals(null, $this->skillsModel->get(9999));
-        
-        // 正常系パターン
-        $skill = $this->skillsModel->get(1);
-        $this->assertEquals("1", $skill['skillId']);
-        $this->assertEquals("アームハンマー", $skill['skillName']);
-        $this->assertEquals("かくとう", $skill['typeName']);
-        $this->assertEquals("100", $skill['power']);
-        $this->assertEquals("180", $skill['zpower']);
-        $this->assertEquals("10", $skill['pp']);
-        $this->assertEquals("物理", $skill['classification']);
-        $this->assertEquals("90", $skill['accuracy']);
-        $this->assertEquals("攻撃後、自分の『すばやさ』ランクが1段階下がる。特性『てつのこぶし』の時、威力が1.2倍になる。", $skill['effect']);
-        $this->assertEquals("直○", $skill['directAttack']);
-        $this->assertEquals("守○", $skill['mamoru']);
+        $this->assertEquals([], $this->supportsModel->get(1));
+    }
+    
+    /**
+     * 相性補完更新
+     */
+    public function testupdate()
+    {
+        // 正常系
+        $this->assertTrue($this->supportsModel->update([]));
+    }
+    
+    /**
+     * 相性補完削除
+     */
+    public function delete()
+    {
+        // 正常系
+        $this->assertEquals([], $this->supportsModel->delete(1));
     }
 }

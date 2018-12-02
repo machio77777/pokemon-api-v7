@@ -1,72 +1,58 @@
 <?php
 
-namespace App\Model\Master;
+namespace App\Model\Battle;
 
 use App\Model\BaseModel;
 use \Exception;
 
-class SkillsModel extends BaseModel {
+class SupportsModel extends BaseModel {
     
     /**
-     * 技一覧取得
+     * 相性補完一覧取得
      * @return 技一覧
      */
     public function getList()
     {
-        $sql = <<< SQL
-SELECT 
-  skill_id AS skillId,
-  skill_name AS skillName 
-FROM 
-  SKILLS 
-ORDER BY skill_id
-SQL;
-        try {
-            return $this->con->execute($sql)->fetchAll('assoc');
-        } catch (Exception $e) {
-            $this->logger->log($e->getMessage());
-            return false;
-        }
+        return [];
     }
     
     /**
-     * 技取得
-     * @param  integer $skillId 技ID
+     * 相性補完登録
+     * @param  array $support
+     * @return boolean
+     */
+    public function add($support)
+    {
+        return true;
+    }
+    
+    /**
+     * 相性補完取得
+     * @param  integer $supportId 相性補完ID
      * @return 技
      */
-    public function get($skillId)
+    public function get($supportId)
     {
-        $sql = <<< SQL
-SELECT 
-  sk.skill_id AS skillId,
-  sk.skill_name AS skillName,
-  ty.type_name1 AS typeName,
-  sk.power AS power,
-  sk.zpower AS zpower,
-  sk.pp AS pp,
-  sk.classification AS classification,
-  sk.accuracy AS accuracy,
-  sk.target AS target,
-  sk.effect AS effect,
-  sk.direct_attack AS directAttack,
-  sk.mamoru AS mamoru 
-FROM 
-  SKILLS sk 
-INNER JOIN TYPES ty ON sk.type_id = ty.type_id 
-WHERE 
-  sk.skill_id =:skillId 
-ORDER BY sk.skill_id
-SQL;
-        try {
-            $skill = $this->con->execute($sql, ['skillId' => $skillId])->fetchAll('assoc');
-            if (count($skill) > 0) {
-                return $skill[0];
-            } else {
-                return null;
-            }
-        } catch (Exception $e) {
-            $this->logger->log($e->getMessage());
-            return false;
-        }
+        return [];
+    }
+    
+    /**
+     * 相性補完更新
+     * @param  array $support
+     * @return boolean
+     */
+    public function update($support)
+    {
+        return true;
+    }
+    
+    /**
+     * 相性補完削除
+     * @param  integer $supportId 相性補完ID
+     * @return boolean
+     */
+    public function delete($supportId)
+    {
+        return true;
     }
 }
