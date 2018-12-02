@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Qualities Model
+ * QualitiesTable
  */
 class QualitiesTable extends Table
 {

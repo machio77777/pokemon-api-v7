@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Tricks Model
+ * TricksTable
  */
 class TricksTable extends Table
 {

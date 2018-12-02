@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Pokemons Model
+ * PbattleTable
  */
 class PbattleTable extends Table
 {
