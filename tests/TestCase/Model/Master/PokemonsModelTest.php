@@ -16,12 +16,10 @@ use App\Common\ApiLogger;
 class PokemonsModelTest extends TestCase {
     
     private $pokemonsModel;
-    private $pokemons;
     
     public function setup()
     {
         parent::setUp();
-        $this->pokemons = TableRegistry::get('Pokemons');
         $this->pokemonsModel = new PokemonsModel(new ApiLogger());
     }
     
@@ -62,4 +60,16 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("65", $pokemon['sd']);
         $this->assertEquals("45", $pokemon['sp']);
     }
+    
+    /**
+     * ポケモン別の覚える技一覧取得
+     */
+    public function testgetSkills()
+    {
+        // 正常系パターン
+        $skills = $this->pokemonsModel->getSkills(1, 1);
+        $this->assertEquals("314", $skills[0]['skillId']);
+        $this->assertEquals("439", $skills[1]['skillId']);
+    }
+    
 }
