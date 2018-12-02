@@ -69,7 +69,9 @@ class PokemonsModelTest extends TestCase {
         // 正常系パターン
         $skills = $this->pokemonsModel->getSkills(1, 1);
         $this->assertEquals("314", $skills[0]['skillId']);
+        $this->assertEquals("たいあたり", $skills[0]['skillName']);
         $this->assertEquals("439", $skills[1]['skillId']);
+        $this->assertEquals("なきごえ", $skills[1]['skillName']);
     }
     
 }

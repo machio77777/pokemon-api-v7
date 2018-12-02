@@ -93,13 +93,16 @@ SQL;
     {
         $sql = <<< SQL
 SELECT 
-  skill_id AS skillId 
+  t.skill_id AS skillId,
+  s.skill_name AS skillName  
 FROM 
-  TRICKS 
+  TRICKS t
+INNER JOIN SKILLS s 
+ON s.skill_id = t.skill_id
 WHERE 
-    zukan_no=:zukanNo 
-AND sub_no=:subNo
-AND delete_flg = 0
+    t.zukan_no=:zukanNo  
+AND t.sub_no=:subNo 
+AND t.delete_flg = 0
 SQL;
         try {
             return $this->con->execute($sql, ['zukanNo' => $zukanNo, 'subNo' => $subNo])->fetchAll('assoc');
