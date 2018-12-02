@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Pokemons Model
+ * CompatibilitiesTable
  */
 class CompatibilitiesTable extends Table
 {

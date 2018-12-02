@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Pokemons Model
+ * RoletargetsTable
  */
 class RoletargetsTable extends Table
 {

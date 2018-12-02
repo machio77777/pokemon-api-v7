@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Typematrix Model
+ * TypematrixTable
  */
 class TypematrixTable extends Table
 {

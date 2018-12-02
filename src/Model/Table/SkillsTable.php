@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Skills Model
+ * SkillsTable
  */
 class SkillsTable extends Table
 {
