@@ -1,64 +1,67 @@
 <?php
-namespace App\Controller\Api\Master;
+namespace App\Controller\Api\Battle;
 
 use App\Controller\Api\ApiController;
-use App\Model\Master\PokemonsModel;
 
 /**
- * PokemonsController
+ * SupportsController
  */
-class PokemonsController extends ApiController
+class SupportsController extends ApiController
 {
     /**
-     * ポケモン図鑑一覧取得
+     * 相性補完一覧取得
      * @return JSONレスポンス
      */
     public function getList()
     {
-        $pokemons = $this->createPokemonsModel()->getList();
-        if ($pokemons === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemons);
+        return $this->response200("相性補完一覧取得");
     }
     
     /**
-     * ポケモン図鑑取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 相性補完登録
      * @return JSONレスポンス
      */
-    public function get($zukanNo, $subNo)
+    public function add()
     {
-        $pokemon = $this->createPokemonsModel()->get($zukanNo, $subNo);
-        if ($pokemon === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemon);
+        return $this->response200("相性補完登録");
     }
     
     /**
-     * ポケモン別に覚える技一覧取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 相性補完取得
      * @return JSONレスポンス
      */
-    public function getSkills($zukanNo, $subNo)
+    public function get()
     {
-        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo);
-        if ($skills === false) {
-            return $this->response503();
-        }
-        return $this->response200($skills);
+        return $this->response200("相性補完取得");
     }
     
     /**
-     * PokemonsModel生成
-     * @return PokemonsModel
+     * 相性補完取得
+     * @param  string $supportId 相性補完ID
+     * @return JSONレスポンス
      */
-    private function createPokemonsModel()
+    public function update($supportId)
     {
-        return new PokemonsModel($this->logger);
+        return $this->response200("相性補完更新{$supportId}");
+    }
+    
+    /**
+     * 相性補完削除
+     * @param  string $supportId 相性補完ID
+     * @return JSONレスポンス
+     */
+    public function delete($supportId)
+    {
+        return $this->response200("相性補完削除{$supportId}");
+    }
+    
+    /**
+     * SupportsModel生成
+     * @return SupportModel
+     */
+    private function createSupportModel()
+    {
+        //return new SupportsModel($this->logger);
     }
     
 }

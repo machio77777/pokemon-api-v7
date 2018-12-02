@@ -1,64 +1,66 @@
 <?php
-namespace App\Controller\Api\Master;
+namespace App\Controller\Api\Traning;
 
 use App\Controller\Api\ApiController;
-use App\Model\Master\PokemonsModel;
 
 /**
- * PokemonsController
+ * RoleTargetsController
  */
-class PokemonsController extends ApiController
+class RoleTargetsController extends ApiController
 {
     /**
-     * ポケモン図鑑一覧取得
+     * 役割対象一覧取得
+     * @param  String $zukanNo 図鑑No
+     * @param  String $subNo   明細No
      * @return JSONレスポンス
      */
-    public function getList()
+    public function getList($zukanNo, $subNo)
     {
-        $pokemons = $this->createPokemonsModel()->getList();
-        if ($pokemons === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemons);
+        return $this->response200("役割対象一覧取得{$zukanNo}/{$subNo}");
     }
     
     /**
-     * ポケモン図鑑取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 役割対象登録
+     * @param  String $zukanNo 図鑑No
+     * @param  String $subNo   明細No
      * @return JSONレスポンス
      */
-    public function get($zukanNo, $subNo)
+    public function add($zukanNo, $subNo)
     {
-        $pokemon = $this->createPokemonsModel()->get($zukanNo, $subNo);
-        if ($pokemon === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemon);
+        return $this->response200("役割対象登録{$zukanNo}/{$subNo}");
     }
     
     /**
-     * ポケモン別に覚える技一覧取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 役割対象更新
+     * @param  String $zukanNo  図鑑No
+     * @param  String $subNo    明細No
+     * @param  String $targetId 役割対象ID
      * @return JSONレスポンス
      */
-    public function getSkills($zukanNo, $subNo)
+    public function update($zukanNo, $subNo, $targetId)
     {
-        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo);
-        if ($skills === false) {
-            return $this->response503();
-        }
-        return $this->response200($skills);
+        return $this->response200("役割対象更新{$zukanNo}/{$subNo}/{$targetId}");
     }
     
     /**
-     * PokemonsModel生成
-     * @return PokemonsModel
+     * 役割対象削除
+     * @param  String $zukanNo  図鑑No
+     * @param  String $subNo    明細No
+     * @param  String $targetId 役割対象ID
+     * @return JSONレスポンス
      */
-    private function createPokemonsModel()
+    public function delete($zukanNo, $subNo, $targetId)
     {
-        return new PokemonsModel($this->logger);
+        return $this->response200("役割対象削除{$zukanNo}/{$subNo}/{$targetId}");
+    }
+    
+    /**
+     * RoleTargetsModel生成
+     * @return SupportModel
+     */
+    private function createRoleTargetsModel()
+    {
+        //return new RoleTargetsModel($this->logger);
     }
     
 }

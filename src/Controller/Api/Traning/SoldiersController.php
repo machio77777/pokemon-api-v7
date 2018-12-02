@@ -1,64 +1,78 @@
 <?php
-namespace App\Controller\Api\Master;
+namespace App\Controller\Api\Traning;
 
 use App\Controller\Api\ApiController;
-use App\Model\Master\PokemonsModel;
 
 /**
- * PokemonsController
+ * SoldiersController
  */
-class PokemonsController extends ApiController
+class SoldiersController extends ApiController
 {
     /**
-     * ポケモン図鑑一覧取得
+     * 対戦用育成済みポケモン一覧取得
+     * @param  String $zukanNo 図鑑No
+     * @param  String $subNo   明細No
      * @return JSONレスポンス
      */
-    public function getList()
+    public function getList($zukanNo, $subNo)
     {
-        $pokemons = $this->createPokemonsModel()->getList();
-        if ($pokemons === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemons);
+        return $this->response200("対戦用育成済みポケモン一覧取得{$zukanNo}/{$subNo}");
     }
     
     /**
-     * ポケモン図鑑取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 対戦用育成済みポケモン登録
+     * @param  String $zukanNo 図鑑No
+     * @param  String $subNo   明細No
      * @return JSONレスポンス
      */
-    public function get($zukanNo, $subNo)
+    public function add($zukanNo, $subNo)
     {
-        $pokemon = $this->createPokemonsModel()->get($zukanNo, $subNo);
-        if ($pokemon === false) {
-            return $this->response503();
-        }
-        return $this->response200($pokemon);
+        return $this->response200("対戦用育成済みポケモン登録{$zukanNo}/{$subNo}");
     }
     
     /**
-     * ポケモン別に覚える技一覧取得
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   図鑑サブNo
+     * 対戦用育成済みポケモン取得
+     * @param  String $zukanNo   図鑑No
+     * @param  String $subNo     明細No
+     * @param  String $soldierId 育成ID
      * @return JSONレスポンス
      */
-    public function getSkills($zukanNo, $subNo)
+    public function get($zukanNo, $subNo, $soldierId)
     {
-        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo);
-        if ($skills === false) {
-            return $this->response503();
-        }
-        return $this->response200($skills);
+        return $this->response200("対戦用育成済みポケモン取得{$zukanNo}/{$subNo}/{$soldierId}");
     }
     
     /**
-     * PokemonsModel生成
-     * @return PokemonsModel
+     * 対戦用育成済みポケモン更新
+     * @param  String $zukanNo   図鑑No
+     * @param  String $subNo     明細No
+     * @param  String $soldierId 育成ID
+     * @return JSONレスポンス
      */
-    private function createPokemonsModel()
+    public function update($zukanNo, $subNo, $soldierId)
     {
-        return new PokemonsModel($this->logger);
+        return $this->response200("対戦用育成済みポケモン更新{$zukanNo}/{$subNo}/{$soldierId}");
+    }
+    
+    /**
+     * 対戦用育成済みポケモン削除
+     * @param  String $zukanNo   図鑑No
+     * @param  String $subNo     明細No
+     * @param  String $soldierId 育成ID
+     * @return JSONレスポンス
+     */
+    public function delete($zukanNo, $subNo, $soldierId)
+    {
+        return $this->response200("対戦用育成済みポケモン削除{$zukanNo}/{$subNo}/{$soldierId}");
+    }
+    
+    /**
+     * SupportsModel生成
+     * @return SupportModel
+     */
+    private function createSoldiersModel()
+    {
+        //return new SoldiersModel($this->logger);
     }
     
 }
