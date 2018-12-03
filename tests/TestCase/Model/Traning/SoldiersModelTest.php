@@ -30,9 +30,8 @@ class SoldiersModelTest extends TestCase {
      */
     public function testgetList()
     {
-        // 正常系パターン
-        $supports = $this->soldiersModel->getList();
-        $this->assertEquals([], $supports);
+        // 取得件数0件の確認
+        $this->assertEquals([], $this->soldiersModel->getList('test', 'test'));
     }
     
     /**
@@ -49,8 +48,8 @@ class SoldiersModelTest extends TestCase {
      */
     public function testget()
     {
-        // NULLパターン
-        $this->assertEquals([], $this->soldiersModel->get(1));
+        // 取得件数0件の確認
+        $this->assertEquals([], $this->soldiersModel->get('test', 'test', 'test'));
     }
     
     /**
