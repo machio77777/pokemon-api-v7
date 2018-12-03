@@ -31,7 +31,7 @@ class RoleTargetsModelTest extends TestCase {
     public function testgetList()
     {
         // 正常系パターン
-        $supports = $this->roleTargetsModel->getList();
+        $supports = $this->roleTargetsModel->getList('test', 'test');
         $this->assertEquals([], $supports);
     }
     

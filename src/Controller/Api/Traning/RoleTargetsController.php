@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Traning;
 
 use App\Controller\Api\ApiController;
+use App\Model\Traning\RoleTargetsModel;
 
 /**
  * RoleTargetsController
@@ -16,7 +17,11 @@ class RoleTargetsController extends ApiController
      */
     public function getList($zukanNo, $subNo)
     {
-        return $this->response200("役割対象一覧取得{$zukanNo}/{$subNo}");
+        $roleTargets = $this->createRoleTargetsModel()->getList($zukanNo, $subNo);
+        if ($roleTargets === false) {
+            return $this->response503();
+        }
+        return $this->response200($roleTargets);
     }
     
     /**
@@ -60,7 +65,7 @@ class RoleTargetsController extends ApiController
      */
     private function createRoleTargetsModel()
     {
-        //return new RoleTargetsModel($this->logger);
+        return new RoleTargetsModel($this->logger);
     }
     
 }
