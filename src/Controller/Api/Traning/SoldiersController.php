@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Traning;
 
 use App\Controller\Api\ApiController;
+use App\Model\Traning\SoldiersModel;
 
 /**
  * SoldiersController
@@ -16,7 +17,11 @@ class SoldiersController extends ApiController
      */
     public function getList($zukanNo, $subNo)
     {
-        return $this->response200("対戦用育成済みポケモン一覧取得{$zukanNo}/{$subNo}");
+        $soldiers = $this->createSoldiersModel()->getList($zukanNo, $subNo);
+        if ($soldiers === false) {
+            return $this->response503();
+        }
+        return $this->response200($soldiers);
     }
     
     /**
@@ -39,7 +44,11 @@ class SoldiersController extends ApiController
      */
     public function get($zukanNo, $subNo, $soldierId)
     {
-        return $this->response200("対戦用育成済みポケモン取得{$zukanNo}/{$subNo}/{$soldierId}");
+        $soldier = $this->createSoldiersModel()->get($zukanNo, $subNo, $soldierId);
+        if ($soldier === false) {
+            return $this->response503();
+        }
+        return $this->response200($soldier);
     }
     
     /**
@@ -72,7 +81,7 @@ class SoldiersController extends ApiController
      */
     private function createSoldiersModel()
     {
-        //return new SoldiersModel($this->logger);
+        return new SoldiersModel($this->logger);
     }
     
 }
