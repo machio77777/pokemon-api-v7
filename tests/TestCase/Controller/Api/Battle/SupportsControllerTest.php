@@ -16,7 +16,7 @@ class SoldiersControllerTest extends BaseControllerTest
      */
     public function testgetList()
     {
-        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/soldiers');
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/soldiers?supportId=test');
         
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);

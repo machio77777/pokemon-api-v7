@@ -47,7 +47,6 @@ Router::scope('/api/v1', function (RouteBuilder $routes) {
      */
     $routes->get('/pokemons/supports', ['prefix' => 'api/battle', 'controller' => 'Supports', 'action' => 'getList']);
     $routes->post('/pokemons/supports', ['prefix' => 'api/battle', 'controller' => 'Supports', 'action' => 'add']);
-    $routes->get('/pokemons/supports/:supportId', ['prefix' => 'api/battle', 'controller' => 'Supports', 'action' => 'get'])->setPass(['supportId']);
     $routes->put('/pokemons/supports/:supportId', ['prefix' => 'api/battle', 'controller' => 'Supports', 'action' => 'update'])->setPass(['supportId']);
     $routes->delete('/pokemons/supports/:supportId', ['prefix' => 'api/battle', 'controller' => 'Supports', 'action' => 'delete'])->setPass(['supportId']);
     

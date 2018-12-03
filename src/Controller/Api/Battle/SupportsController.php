@@ -2,6 +2,7 @@
 namespace App\Controller\Api\Battle;
 
 use App\Controller\Api\ApiController;
+use App\Model\Battle\SupportsModel;
 
 /**
  * SupportsController
@@ -14,7 +15,11 @@ class SupportsController extends ApiController
      */
     public function getList()
     {
-        return $this->response200("相性補完一覧取得");
+        $supports = $this->createSupportModel()->getList($this->request->getQuery('supportId'));
+        if ($supports === false) {
+            return $this->response503();
+        }
+        return $this->response200($supports);
     }
     
     /**
@@ -24,15 +29,6 @@ class SupportsController extends ApiController
     public function add()
     {
         return $this->response200("相性補完登録");
-    }
-    
-    /**
-     * 相性補完取得
-     * @return JSONレスポンス
-     */
-    public function get()
-    {
-        return $this->response200("相性補完取得");
     }
     
     /**
@@ -61,7 +57,7 @@ class SupportsController extends ApiController
      */
     private function createSupportModel()
     {
-        //return new SupportsModel($this->logger);
+        return new SupportsModel($this->logger);
     }
     
 }
