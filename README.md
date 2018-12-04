@@ -11,8 +11,6 @@ Provides basic information such as Pokemon's tribal value, remembering technique
 
 We also provide data that matches rate battle, such as breeding data, role subjects, complementary complement.
 
-[Pokémon's API Swagger](https://machio77777.github.io/pokemon-swagger/)
-
 ## Development
 
 Initial command for project construction.
@@ -38,6 +36,8 @@ composer install
 
 Implement all the sql files in the sql filler after creating the appropriate database.
 
+[Pokémon's API Swagger](https://machio77777.github.io/pokemon-swagger/)
+
 ## Directory Structure
 
 ```
@@ -56,6 +56,13 @@ pokemon/
       ├ Entity
       └ Table
 ```
+
+## Technology
+
+- PHP7.1
+- CakePHP3.69
+- MAMP
+- MySQL5.7
 
 ## Reference
 
