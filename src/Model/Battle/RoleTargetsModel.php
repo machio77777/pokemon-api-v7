@@ -15,7 +15,7 @@ class RoleTargetsModel extends BaseModel {
     {
         $sql = <<< SQL
 SELECT 
-  rt.detail_no AS detailNo,
+  rt.target_id AS targetId,
   rt.target_zukan_no AS zukanNo,
   p.name AS name 
 FROM 
@@ -42,7 +42,31 @@ SQL;
      */
     public function add($roleTarget)
     {
-        return true;
+        $sql = <<< SQL
+INSERT ROLETARGETS 
+(
+  target_id,
+  zukan_no,
+  sub_no,
+  target_zukan_no,
+  target_sub_no
+) VALUES (
+  1,
+  :zukanNo,
+  :subNo,
+  :targetZukanNo,
+  :targetSubNo
+)
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, $roleTarget)->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
     
     /**
@@ -52,7 +76,26 @@ SQL;
      */
     public function update($roleTarget)
     {
-        return true;
+        $sql = <<< SQL
+UPDATE ROLETARGETS 
+SET 
+  zukan_no=:zukanNo,
+  sub_no=:subNo,
+  target_zukan_no=:targetZukanNo,
+  target_sub_no=:targetSubNo 
+WHERE 
+    target_id=:targetId  
+AND delete_flg=0
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, $roleTarget)->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
     
     /**
@@ -62,6 +105,22 @@ SQL;
      */
     public function delete($targetId)
     {
-        return true;
+        $sql = <<< SQL
+UPDATE ROLETARGETS 
+SET 
+  delete_flg=1  
+WHERE 
+    target_id=:targetId  
+AND delete_flg=0
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, ['targetId' => $targetId])->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
 }
