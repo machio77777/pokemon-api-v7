@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Test\TestCase\Model\Traning;
+namespace App\Test\TestCase\Model\Battle;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use App\Model\Traning\RoleTargetsModel;
+use App\Model\Battle\RoleTargetsModel;
 use App\Common\ApiLogger;
 
 /**
  * RoleTargetsModesTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Model/Traning/RoleTargetsModelTest.php
+ * vendor/bin/phpunit tests/TestCase/Model/Battle/RoleTargetsModelTest.php
  */
 class RoleTargetsModelTest extends TestCase {
     

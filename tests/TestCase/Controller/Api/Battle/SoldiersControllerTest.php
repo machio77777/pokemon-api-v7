@@ -1,5 +1,5 @@
 <?php
-namespace App\Test\TestCase\Controller\Api\Traning;
+namespace App\Test\TestCase\Controller\Api\Battle;
 
 use App\Test\TestCase\Controller\Api\BaseControllerTest;
 
@@ -7,7 +7,7 @@ use App\Test\TestCase\Controller\Api\BaseControllerTest;
  * SoldiersControllerTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Controller/Api/Traning/SoldiersControllerTest.php
+ * vendor/bin/phpunit tests/TestCase/Controller/Api/Battle/SoldiersControllerTest.php
  */
 class SoldiersControllerTest extends BaseControllerTest
 {

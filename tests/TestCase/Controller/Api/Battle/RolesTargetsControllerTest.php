@@ -1,5 +1,5 @@
 <?php
-namespace App\Test\TestCase\Controller\Api\Traning;
+namespace App\Test\TestCase\Controller\Api\Battle;
 
 use App\Test\TestCase\Controller\Api\BaseControllerTest;
 
@@ -7,7 +7,7 @@ use App\Test\TestCase\Controller\Api\BaseControllerTest;
  * RolesTargetsControllerTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Controller/Api/Traning/RolesTargetsControllerTest.php
+ * vendor/bin/phpunit tests/TestCase/Controller/Api/Battle/RolesTargetsControllerTest.php
  */
 class RolesTargetsControllerTest extends BaseControllerTest
 {

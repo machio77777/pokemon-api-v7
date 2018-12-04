@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Traning;
+namespace App\Model\Battle;
 
 use App\Model\BaseModel;
 use \Exception;
