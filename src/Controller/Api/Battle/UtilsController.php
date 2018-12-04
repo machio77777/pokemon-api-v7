@@ -2,20 +2,20 @@
 namespace App\Controller\Api\Battle;
 
 use App\Controller\Api\ApiController;
-use App\Model\Battle\SupportsModel;
+use App\Model\Battle\UtilsModel;
 
 /**
  * SupportsController
  */
-class SupportsController extends ApiController
+class UtilsController extends ApiController
 {
     /**
      * 相性補完一覧取得
      * @return JSONレスポンス
      */
-    public function getList()
+    public function getSuportsList()
     {
-        $supports = $this->createSupportModel()->getList($this->request->getQuery('supportId'));
+        $supports = $this->createUtilsModel()->getSuportsList();
         if ($supports === false) {
             return $this->response503();
         }
@@ -23,41 +23,12 @@ class SupportsController extends ApiController
     }
     
     /**
-     * 相性補完登録
-     * @return JSONレスポンス
+     * UtilsModel生成
+     * @return UtilsModels
      */
-    public function add()
+    private function createUtilsModel()
     {
-        return $this->response200("相性補完登録");
-    }
-    
-    /**
-     * 相性補完取得
-     * @param  string $supportId 相性補完ID
-     * @return JSONレスポンス
-     */
-    public function update($supportId)
-    {
-        return $this->response200("相性補完更新{$supportId}");
-    }
-    
-    /**
-     * 相性補完削除
-     * @param  string $supportId 相性補完ID
-     * @return JSONレスポンス
-     */
-    public function delete($supportId)
-    {
-        return $this->response200("相性補完削除{$supportId}");
-    }
-    
-    /**
-     * SupportsModel生成
-     * @return SupportModel
-     */
-    private function createSupportModel()
-    {
-        return new SupportsModel($this->logger);
+        return new UtilsModel($this->logger);
     }
     
 }
