@@ -37,12 +37,68 @@ SQL;
     
     /**
      * 対戦用育成済みポケモン登録
-     * @param  array $soldiers
+     * @param  array $soldier
      * @return boolean
      */
-    public function add($soldiers)
+    public function add($soldier)
     {
-        return true;
+        $sql = <<< SQL
+INSERT INTO PBATTLES 
+(
+  soldier_id,
+  zukan_no,
+  sub_no,
+  personality,
+  quality_id,
+  skill_id1,
+  skill_id2,
+  skill_id3,
+  skill_id4,
+  ehp,
+  eat,
+  edf,
+  esa,
+  esd,
+  esp,
+  ahp,
+  aat,
+  adf,
+  asa,
+  asd,
+  asp
+) VALUES (
+  1,
+  :zukanNo,
+  :subNo,
+  :personality,
+  :qualityId,
+  :skillId1,
+  :skillId2,
+  :skillId3,
+  :skillId4,
+  :ehp,
+  :eat,
+  :edf,
+  :esa,
+  :esd,
+  :esp,
+  :ahp,
+  :aat,
+  :adf,
+  :asa,
+  :asd,
+  :asp
+)
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, $soldier)->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
     
     /**
@@ -110,12 +166,47 @@ SQL;
     
     /**
      * 対戦用育成済みポケモン更新
-     * @param  array $soldiers
+     * @param  array $soldier
      * @return boolean
      */
-    public function update($soldiers)
+    public function update($soldier)
     {
-        return true;
+        $sql = <<< SQL
+UPDATE PBATTLES 
+SET 
+  zukan_no=:zukanNo,
+  sub_no=:subNo,
+  personality=:personality,
+  quality_id=:qualityId,
+  skill_id1=:skillId1,
+  skill_id2=:skillId2,
+  skill_id3=:skillId3,
+  skill_id4=:skillId4,
+  ehp=:ehp,
+  eat=:eat,
+  edf=:edf,
+  esa=:esa,
+  esd=:esd,
+  esp=:esp,
+  ahp=:ahp,
+  aat=:aat,
+  adf=:adf,
+  asa=:asa,
+  asd=:asd,
+  asp=:asp 
+WHERE 
+    soldier_id=:soldierId 
+AND delete_flg=0
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, $soldier)->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
     
     /**
@@ -125,6 +216,22 @@ SQL;
      */
     public function delete($soldierId)
     {
-        return true;
+        $sql = <<< SQL
+UPDATE PBATTLES 
+SET 
+  delete_flg=1 
+WHERE 
+    soldier_id=:soldierId 
+AND delete_flg=0
+SQL;
+        try {
+            $this->con->begin();
+            $cnt = $this->con->execute($sql, ['soldierId' => $soldierId])->count();
+            $this->con->commit();
+            return $cnt;
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
     }
 }
