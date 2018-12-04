@@ -1,29 +1,29 @@
 <?php
-namespace App\Test\TestCase\Controller\Api\Traning;
+namespace App\Test\TestCase\Controller\Api\Battle;
 
 use App\Test\TestCase\Controller\Api\BaseControllerTest;
 
 /**
- * SupportsControllerTestクラス
+ * SoldiersControllerTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Controller/Api/Traning/SoldiersControllerTest.php
+ * vendor/bin/phpunit tests/TestCase/Controller/Api/Battle/SoldiersControllerTest.php
  */
 class SoldiersControllerTest extends BaseControllerTest
 {
     /**
-     * 対戦用育成ポケモン一覧取得
+     * 対戦用育成済みポケモン一覧取得
      */
     public function testgetList()
     {
-        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/soldiers?supportId=test');
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/soldiers');
         
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
     
     /**
-     * 対戦用育成ポケモン登録
+     * 対戦用育成済みポケモン登録
      */
     public function testadd()
     {
@@ -34,7 +34,7 @@ class SoldiersControllerTest extends BaseControllerTest
     }
     
     /**
-     * 対戦用育成ポケモン取得
+     * 対戦用育成済みポケモン取得
      */
     public function testget()
     {
@@ -45,7 +45,7 @@ class SoldiersControllerTest extends BaseControllerTest
     }
     
     /**
-     * 対戦用育成ポケモン更新
+     * 対戦用育成済みポケモン更新
      */
     public function testupdate()
     {
@@ -56,7 +56,7 @@ class SoldiersControllerTest extends BaseControllerTest
     }
     
     /**
-     * 対戦用育成ポケモン削除
+     * 対戦用育成済みポケモン削除
      */
     public function testdelete()
     {

@@ -1,8 +1,8 @@
 <?php
-namespace App\Controller\Api\Traning;
+namespace App\Controller\Api\Battle;
 
 use App\Controller\Api\ApiController;
-use App\Model\Traning\SoldiersModel;
+use App\Model\Battle\SoldiersModel;
 
 /**
  * SoldiersController

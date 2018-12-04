@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Model\Master;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\Master\PokemonsModel;
 use App\Common\ApiLogger;

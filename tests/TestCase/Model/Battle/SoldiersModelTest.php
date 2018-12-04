@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Test\TestCase\Model\Traning;
+namespace App\Test\TestCase\Model\Battle;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use App\Model\Traning\SoldiersModel;
+use App\Model\Battle\SoldiersModel;
 use App\Common\ApiLogger;
 
 /**
  * SoldiersModelTestクラス
  * 
  * [実行コマンド]
- * vendor/bin/phpunit tests/TestCase/Model/Traning/SoldiersModelTest.php
+ * vendor/bin/phpunit tests/TestCase/Model/Battle/SoldiersModelTest.php
  */
 class SoldiersModelTest extends TestCase {
     
