@@ -92,7 +92,7 @@ CREATE TABLE TYPEMATRIX (
 -- ポケモン対戦用育成済み
 CREATE TABLE PBATTLES (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  soldier_id int(11) NOT NULL COMMENT '育成ID',
+  soldier_id VARCHAR(20) NOT NULL COMMENT '育成ID',
   zukan_no int(5) NOT NULL COMMENT '図鑑No',
   sub_no int(2) NOT NULL COMMENT 'サブNo',
   personality VARCHAR(20) NOT NULL COMMENT '性格',
