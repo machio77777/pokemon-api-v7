@@ -13,7 +13,7 @@ We also provide data that matches rate battle, such as breeding data, role subje
 
 [Pokémon's API Swagger](https://machio77777.github.io/pokemon-swagger/)
 
-## Install
+## Development
 
 Initial command for project construction.
 
@@ -29,6 +29,14 @@ It is a necessary command for me, but it may be unnecessary for some people.
 ```linux
 ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock
 ```
+
+## Install
+
+```linux
+composer install
+```
+
+Implement all the sql files in the sql filler after creating the appropriate database.
 
 ## Directory Structure
 
