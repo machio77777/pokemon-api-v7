@@ -111,46 +111,4 @@ SQL;
             return false;
         }
     }
-    
-    /**
-     * 存在チェック
-     * @param  string $zukanNo 図鑑No
-     * @param  string $subNo   明細No
-     * @param  string $name    ポケモン名
-     * @return boolean
-     */
-    public function exists($zukanNo = null, $subNo = null, $name = null)
-    {
-        $sql = <<< SQL
-SELECT 
-  COUNT(*) AS COUNT 
-FROM 
-  POKEMONS 
-WHERE 
-    delete_flg = 0 
-SQL;
-        try {
-            $keys = [];
-            if ($zukanNo !== null && $zukanNo !== "") {
-                $sql .= " AND zukan_no=:zukanNo ";
-                $keys['zukanNo'] = $zukanNo;
-            }
-            if ($subNo !== null && $subNo !== "") {
-                $sql .= " AND sub_no=:subNo ";
-                $keys['subNo'] = $subNo;
-            }
-            if ($name !== null && $name !== "") {
-                $sql .= " AND name=:name ";
-                $keys['name'] = $name;
-            }
-            $result = $this->con->execute($sql, $keys)->fetchAll('assoc')[0]['COUNT'];
-            if ($result == 0) {
-                return false;
-            }
-            return true;
-        } catch (Exception $e) {
-            $this->logger->log($e->getMessage());
-            return false;
-        }
-    }
 }

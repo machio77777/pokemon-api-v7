@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Model\Master;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\Master\PokemonsModel;
 use App\Common\ApiLogger;
@@ -72,18 +71,6 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("たいあたり", $skills[0]['skillName']);
         $this->assertEquals("439", $skills[1]['skillId']);
         $this->assertEquals("なきごえ", $skills[1]['skillName']);
-    }
-    
-    /**
-     * ポケモン存在チェック
-     */
-    public function testexists()
-    {
-        // 異常系パターン
-        $this->assertFalse($this->pokemonsModel->exists(null, null, "テスト"));
-        
-        // 正常系パターン
-        $this->assertTrue($this->pokemonsModel->exists(null, null, "フシギダネ"));
     }
     
 }
