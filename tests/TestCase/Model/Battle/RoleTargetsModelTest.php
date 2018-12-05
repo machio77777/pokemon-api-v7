@@ -52,7 +52,7 @@ class RoleTargetsModelTest extends TestCase {
         $this->assertEquals(1, $this->roleTargetsModel->add($roleTarget));
         
         // DB値の確認
-        $tar = $this->roleTargets->find('all')->where(['target_id' => 1])->toArray()[0];
+        $tar = $this->roleTargets->find('all')->where(['target_id' => 'TAR0000001'])->toArray()[0];
         $this->assertEquals(1, $tar['zukan_no']);
         $this->assertEquals(2, $tar['sub_no']);
         $this->assertEquals(3, $tar['target_zukan_no']);
@@ -66,7 +66,7 @@ class RoleTargetsModelTest extends TestCase {
     {
         // 正常系
         $roleTarget = [];
-        $roleTarget['targetId'] = 1;
+        $roleTarget['targetId'] = 'TAR0000001';
         $roleTarget['zukanNo'] = 11;
         $roleTarget['subNo'] = 22;
         $roleTarget['targetZukanNo'] = 33;
@@ -74,12 +74,11 @@ class RoleTargetsModelTest extends TestCase {
         $this->assertEquals(1, $this->roleTargetsModel->update($roleTarget));
         
         // DB値の確認
-        $tar = $this->roleTargets->find('all')->where(['target_id' => 1])->toArray()[0];
+        $tar = $this->roleTargets->find('all')->where(['target_id' => 'TAR0000001'])->toArray()[0];
         $this->assertEquals(11, $tar['zukan_no']);
         $this->assertEquals(22, $tar['sub_no']);
         $this->assertEquals(33, $tar['target_zukan_no']);
-        $this->assertEquals(44, $tar['target_sub_no']);
-        
+        $this->assertEquals(44, $tar['target_sub_no']);   
     }
     
     /**
@@ -88,10 +87,10 @@ class RoleTargetsModelTest extends TestCase {
     public function testdelete()
     {
         // 正常系
-        $this->assertEquals(1, $this->roleTargetsModel->delete(1));
+        $this->assertEquals(1, $this->roleTargetsModel->delete('TAR0000001'));
         
         // DB値の確認
-        $tar = $this->roleTargets->find('all')->where(['target_id' => 1])->toArray()[0];
+        $tar = $this->roleTargets->find('all')->where(['target_id' => 'TAR0000001'])->toArray()[0];
         $this->assertEquals(1, $tar['delete_flg']);
     }
 }
