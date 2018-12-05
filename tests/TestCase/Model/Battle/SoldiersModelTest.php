@@ -73,7 +73,7 @@ class SoldiersModelTest extends TestCase {
         $soldier['asa'] = 104;
         $soldier['asd'] = 105;
         $soldier['asp'] = 106;
-        $this->assertEquals(1, $this->soldiersModel->add($soldier));
+        $this->assertTrue($this->soldiersModel->add($soldier));
         
         // DB値の確認
         $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];
@@ -127,7 +127,7 @@ class SoldiersModelTest extends TestCase {
         $soldier['asa'] = 204;
         $soldier['asd'] = 205;
         $soldier['asp'] = 206;
-        $this->assertEquals(1, $this->soldiersModel->update($soldier));
+        $this->assertTrue($this->soldiersModel->update($soldier));
         
         // DB値の確認
         $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];
@@ -159,7 +159,7 @@ class SoldiersModelTest extends TestCase {
     public function testdelete()
     {
         // 正常系
-        $this->assertEquals(1, $this->soldiersModel->delete('SOL0000001'));
+        $this->assertTrue($this->soldiersModel->delete('SOL0000001'));
         
         // DB値の確認
         $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];

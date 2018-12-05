@@ -96,9 +96,12 @@ WHERE
 SQL;
         try {
             $this->con->begin();
-            $cnt = $this->con->execute($sql, $soldier)->count();
+            if ($this->con->execute($sql, $soldier)->count() === 0) {
+                $this->con->rollback();
+                return false;
+            }
             $this->con->commit();
-            return $cnt;
+            return true;
         } catch (Exception $e) {
             $this->con->rollback();
             $this->logger->log($e->getMessage());
@@ -205,9 +208,12 @@ AND delete_flg=0
 SQL;
         try {
             $this->con->begin();
-            $cnt = $this->con->execute($sql, $soldier)->count();
+            if ($this->con->execute($sql, $soldier)->count() === 0) {
+                $this->con->rollback();
+                return 0;
+            }
             $this->con->commit();
-            return $cnt;
+            return true;
         } catch (Exception $e) {
             $this->con->rollback();
             $this->logger->log($e->getMessage());
@@ -232,9 +238,12 @@ AND delete_flg=0
 SQL;
         try {
             $this->con->begin();
-            $cnt = $this->con->execute($sql, ['soldierId' => $soldierId])->count();
+            if ($this->con->execute($sql, ['soldierId' => $soldierId])->count() === 0) {
+                $this->con->rollback();
+                return 0;
+            }
             $this->con->commit();
-            return $cnt;
+            return true;
         } catch (Exception $e) {
             $this->con->rollback();
             $this->logger->log($e->getMessage());
