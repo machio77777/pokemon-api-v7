@@ -43,20 +43,24 @@ SQL;
     public function add($roleTarget)
     {
         $sql = <<< SQL
-INSERT ROLETARGETS 
+INSERT INTO ROLETARGETS 
 (
   target_id,
   zukan_no,
   sub_no,
   target_zukan_no,
   target_sub_no
-) VALUES (
-  1,
+) 
+SELECT
+  CONCAT('TAR',LPAD(COALESCE(MAX(SUBSTRING(TARGET_ID,4,7)),0)+1,7,0)),  
   :zukanNo,
   :subNo,
   :targetZukanNo,
-  :targetSubNo
-)
+  :targetSubNo 
+FROM 
+  ROLETARGETS 
+WHERE 
+  delete_flg=0
 SQL;
         try {
             $this->con->begin();

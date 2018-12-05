@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Api\Battle;
 
+use Cake\ORM\TableRegistry;
 use App\Controller\Api\ApiController;
 use App\Model\Battle\SoldiersModel;
 
@@ -32,7 +33,19 @@ class SoldiersController extends ApiController
      */
     public function add($zukanNo, $subNo)
     {
-        return $this->response200("対戦用育成済みポケモン登録{$zukanNo}/{$subNo}");
+        $soldier = TableRegistry::get('Pbattles')->newEntity($this->request->getData(), ['validate' => 'add']);
+        if ($soldier->getErrors()) {
+            return $this->response400();
+        }
+        
+        $result = $this->createSoldiersModel()->add(array_merge(['zukanNo' => $zukanNo, 'subNo' => $subNo], $soldier->toArray()));
+        if ($result === false) {
+            return $this->response503();
+        } elseif ($result === 0) {
+            return $this->response409();
+        } else {
+            return $this->response200();
+        }
     }
     
     /**
@@ -60,7 +73,21 @@ class SoldiersController extends ApiController
      */
     public function update($zukanNo, $subNo, $soldierId)
     {
-        return $this->response200("対戦用育成済みポケモン更新{$zukanNo}/{$subNo}/{$soldierId}");
+        $soldier = TableRegistry::get('Pbattles')->newEntity($this->request->getData(), ['validate' => 'update']);
+        if ($soldier->getErrors()) {
+            return $this->response400();
+        }
+        
+        $result = $this->createSoldiersModel()->update(
+                array_merge(['zukanNo' => $zukanNo, 'subNo' => $subNo, 'soldierId' => $soldierId], $soldier->toArray()));
+        
+        if ($result === false) {
+            return $this->response503();
+        } elseif ($result === 0) {
+            return $this->response409();
+        } else {
+            return $this->response200();
+        }
     }
     
     /**
@@ -72,7 +99,14 @@ class SoldiersController extends ApiController
      */
     public function delete($zukanNo, $subNo, $soldierId)
     {
-        return $this->response200("対戦用育成済みポケモン削除{$zukanNo}/{$subNo}/{$soldierId}");
+        $result = $this->createSoldiersModel()->delete($soldierId);
+        if ($result === false) {
+            return $this->response503();
+        } elseif($result === 0) {
+            return $this->response409();
+        } else {
+            return $this->response200();
+        }
     }
     
     /**

@@ -66,8 +66,9 @@ INSERT INTO PBATTLES
   asa,
   asd,
   asp
-) VALUES (
-  1,
+) 
+SELECT
+  CONCAT('SOL',LPAD(COALESCE(MAX(SUBSTRING(SOLDIER_ID,4,7)),0)+1,7,0)),
   :zukanNo,
   :subNo,
   :personality,
@@ -87,8 +88,11 @@ INSERT INTO PBATTLES
   :adf,
   :asa,
   :asd,
-  :asp
-)
+  :asp 
+FROM
+  PBATTLES 
+WHERE 
+  delete_flg=0
 SQL;
         try {
             $this->con->begin();
@@ -96,6 +100,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }
@@ -204,6 +209,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }
@@ -230,6 +236,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }
