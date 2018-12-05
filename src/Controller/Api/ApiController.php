@@ -24,7 +24,7 @@ class ApiController extends AppController
     protected function response200($data = '', $message = 'Ok')
     {
         $this->logger->successProcess();
-        return $this->response->withStringBody(json_encode(['message' => $message, 'data' => $data]));
+        return $this->response->withStringBody(json_encode(['message' => $message, 'data' => $data], JSON_UNESCAPED_UNICODE));
     }
     
     /**
@@ -37,7 +37,7 @@ class ApiController extends AppController
     {
         $this->logger->errorProcess();
         $response = $this->response->withStatus(400);
-        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data]));
+        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data], JSON_UNESCAPED_UNICODE));
     }
     
     /**
@@ -50,7 +50,7 @@ class ApiController extends AppController
     {
         $this->logger->errorProcess();
         $response = $this->response->withStatus(409);
-        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data]));
+        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data], JSON_UNESCAPED_UNICODE));
     }
     
     /**
@@ -63,6 +63,6 @@ class ApiController extends AppController
     {
         $this->logger->errorProcess();
         $response = $this->response->withStatus(503);
-        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data]));
+        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data], JSON_UNESCAPED_UNICODE));
     }
 }
