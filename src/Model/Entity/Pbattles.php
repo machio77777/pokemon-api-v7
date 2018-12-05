@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Pbattle Entity
+ * Pbattles Entity
  */
-class Pbattle extends Entity
+class Pbattles extends Entity
 {
     
     protected $_accessible = [

@@ -100,6 +100,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }
@@ -208,6 +209,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }
@@ -234,6 +236,7 @@ SQL;
             $this->con->commit();
             return $cnt;
         } catch (Exception $e) {
+            $this->con->rollback();
             $this->logger->log($e->getMessage());
             return false;
         }

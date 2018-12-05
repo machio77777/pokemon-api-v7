@@ -41,6 +41,19 @@ class ApiController extends AppController
     }
     
     /**
+     * レスポンス共通処理 - 409
+     * @param  array  $data
+     * @param  string $message
+     * @return JSONレスポンス
+     */
+    protected function response409($data = '', $message = 'Conflict')
+    {
+        $this->logger->errorProcess();
+        $response = $this->response->withStatus(409);
+        return $response->withStringBody(json_encode(['message' => $message, 'data' => $data]));
+    }
+    
+    /**
      * レスポンス共通処理 - 503
      * @param  array  $data
      * @param  string $message
