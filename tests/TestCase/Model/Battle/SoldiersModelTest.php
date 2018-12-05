@@ -76,7 +76,7 @@ class SoldiersModelTest extends TestCase {
         $this->assertEquals(1, $this->soldiersModel->add($soldier));
         
         // DB値の確認
-        $sol = $this->pbattles->find('all')->where(['soldier_id' => 1])->toArray()[0];
+        $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];
         $this->assertEquals(1, $sol['zukan_no']);
         $this->assertEquals(2, $sol['sub_no']);
         $this->assertEquals('いじっぱり', $sol['personality']);
@@ -106,7 +106,7 @@ class SoldiersModelTest extends TestCase {
     {
         // 正常系
         $soldier = [];
-        $soldier['soldierId'] = 1;
+        $soldier['soldierId'] = 'SOL0000001';
         $soldier['zukanNo'] = 21;
         $soldier['subNo'] = 22;
         $soldier['personality'] = 'しんちょう';
@@ -130,7 +130,7 @@ class SoldiersModelTest extends TestCase {
         $this->assertEquals(1, $this->soldiersModel->update($soldier));
         
         // DB値の確認
-        $sol = $this->pbattles->find('all')->where(['soldier_id' => 1])->toArray()[0];
+        $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];
         $this->assertEquals(21, $sol['zukan_no']);
         $this->assertEquals(22, $sol['sub_no']);
         $this->assertEquals('しんちょう', $sol['personality']);
@@ -159,10 +159,10 @@ class SoldiersModelTest extends TestCase {
     public function testdelete()
     {
         // 正常系
-        $this->assertEquals(1, $this->soldiersModel->delete(1));
+        $this->assertEquals(1, $this->soldiersModel->delete('SOL0000001'));
         
         // DB値の確認
-        $sol = $this->pbattles->find('all')->where(['soldier_id' => 1])->toArray()[0];
+        $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];
         $this->assertEquals(1, $sol['delete_flg']);
     }
 }
