@@ -49,9 +49,11 @@ pokemon/
     ├ Common
     └ Controller
     │ ├ Api
+    │ │ ├ Battle
     │ │ └ Master
     │ └ Component
     └ Model
+      ├ Battle
       ├ Master
       ├ Entity
       └ Table
@@ -59,10 +61,10 @@ pokemon/
 
 ## Technology
 
-- PHP7.1
+- PHP7.19
 - CakePHP3.69
 - MAMP
-- MySQL5.7
+- MySQL5.6
 
 ## Reference
 
