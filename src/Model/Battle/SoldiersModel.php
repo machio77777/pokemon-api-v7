@@ -98,7 +98,7 @@ SQL;
             $this->con->begin();
             if ($this->con->execute($sql, $soldier)->count() === 0) {
                 $this->con->rollback();
-                return false;
+                return 0;
             }
             $this->con->commit();
             return true;
