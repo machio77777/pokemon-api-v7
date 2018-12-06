@@ -159,7 +159,7 @@ class SoldiersModelTest extends TestCase {
     public function testdelete()
     {
         // 正常系
-        $this->assertTrue($this->soldiersModel->delete('SOL0000001'));
+        $this->assertTrue($this->soldiersModel->delete(21, 22, 'SOL0000001'));
         
         // DB値の確認
         $sol = $this->pbattles->find('all')->where(['soldier_id' => 'SOL0000001'])->toArray()[0];

@@ -57,6 +57,23 @@ class CommonComponent extends Component
     }
     
     /**
+     * CakePHP3標準ValidateObject変換
+     * @param  array $errors
+     * @return array
+     */
+    public function convertCakeValidateObject($errors)
+    {
+        $convertObject = array();
+        foreach ($errors as $key => $values) {
+            $convertObject[$key] = array();
+            foreach ($values as $value) {
+                $convertObject[$key][] = $value;
+            }
+        }
+        return $convertObject;
+    }
+    
+    /**
      * 属性初期化
      */
     private function initTypes()

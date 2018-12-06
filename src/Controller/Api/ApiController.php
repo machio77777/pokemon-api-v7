@@ -13,6 +13,7 @@ class ApiController extends AppController
     {
         parent::initialize();
         $this->logger = new ApiLogger();
+        $this->loadComponent('Common');
     }
     
     /**
