@@ -92,7 +92,9 @@ SELECT
 FROM
   PBATTLES 
 WHERE 
-  delete_flg=0
+    zukan_no=:zukanNo 
+AND sub_no=:subNo 
+AND delete_flg=0
 SQL;
         try {
             $this->con->begin();
