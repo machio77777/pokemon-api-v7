@@ -43,4 +43,17 @@ class CommonComponentTest extends TestCase
         $quality2 = $this->Common->convertQuality('テスト');
         $this->assertTextEquals(0, $quality2);
     }
+    
+    /**
+     * CakePHP3標準ValidateObject変換
+     */
+    public function testconvertCakeValidateObj()
+    {
+        $correctResponse = '{"val1":["xxxxx"],"val3":["yyyyy","zzzzz"]}';
+        $errors = array("val1" => array("_empty" => "xxxxx"), "val3" => array("maxLength" => "yyyyy", "numeric" => "zzzzz"));
+        
+        $result = json_encode($this->Common->convertCakeValidateObject($errors));
+        $this->assertEquals($correctResponse, $result);
+    }
+    
 }
