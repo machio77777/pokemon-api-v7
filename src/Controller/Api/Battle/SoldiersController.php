@@ -35,7 +35,7 @@ class SoldiersController extends ApiController
     {
         $soldier = TableRegistry::get('Pbattles')->newEntity($this->request->getData(), ['validate' => 'add']);
         if ($soldier->getErrors()) {
-            return $this->response400();
+            return $this->response400($this->Common->convertCakeValidateObject($soldier->getErrors()));
         }
         
         $result = $this->createSoldiersModel()->add(array_merge(['zukanNo' => $zukanNo, 'subNo' => $subNo], $soldier->toArray()));
@@ -75,7 +75,7 @@ class SoldiersController extends ApiController
     {
         $soldier = TableRegistry::get('Pbattles')->newEntity($this->request->getData(), ['validate' => 'update']);
         if ($soldier->getErrors()) {
-            return $this->response400();
+            return $this->response400($this->Common->convertCakeValidateObject($soldier->getErrors()));
         }
         
         $result = $this->createSoldiersModel()->update(
@@ -99,7 +99,7 @@ class SoldiersController extends ApiController
      */
     public function delete($zukanNo, $subNo, $soldierId)
     {
-        $result = $this->createSoldiersModel()->delete($soldierId);
+        $result = $this->createSoldiersModel()->delete($zukanNo, $subNo, $soldierId);
         if ($result === false) {
             return $this->response503();
         } elseif($result === 0) {

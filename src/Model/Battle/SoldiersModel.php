@@ -225,22 +225,26 @@ SQL;
     
     /**
      * 対戦用育成済みポケモン削除
+     * @param  string  $zukanNo   図鑑No
+     * @param  string  $subNo     サブNo
      * @param  integer $soldierId 育成済みID
      * @return boolean
      */
-    public function delete($soldierId)
+    public function delete($zukanNo, $subNo, $soldierId)
     {
         $sql = <<< SQL
 UPDATE PBATTLES 
 SET 
   delete_flg=1 
 WHERE 
-    soldier_id=:soldierId 
+    zukan_no=:zukanNo 
+AND sub_no=:subNo 
+AND soldier_id=:soldierId 
 AND delete_flg=0
 SQL;
         try {
             $this->con->begin();
-            if ($this->con->execute($sql, ['soldierId' => $soldierId])->count() === 0) {
+            if ($this->con->execute($sql, ['zukanNo' => $zukanNo, 'subNo' => $subNo, 'soldierId' => $soldierId])->count() === 0) {
                 $this->con->rollback();
                 return 0;
             }
