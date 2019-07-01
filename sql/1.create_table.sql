@@ -19,6 +19,7 @@ CREATE TABLE POKEMONS (
   quality_id1 int(4) COMMENT '特性1',
   quality_id2 int(4) COMMENT '特性2',
   dream_quality_id int(4) COMMENT '夢特性',
+  generation int(2) COMMENT '世代',
   hp int(4) COMMENT '種族値-HP',
   at int(4) COMMENT '種族値-攻撃',
   df int(4) COMMENT '種族値-防御',

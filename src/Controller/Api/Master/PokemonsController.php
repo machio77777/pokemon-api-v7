@@ -15,7 +15,9 @@ class PokemonsController extends ApiController
      */
     public function getList()
     {
-        $pokemons = $this->createPokemonsModel()->getList();
+        $generation = $this->request->getQuery('generation');
+        $megaFlg = $this->request->getQuery('megaFlg');
+        $pokemons = $this->createPokemonsModel()->getList($generation, $megaFlg);
         if ($pokemons === false) {
             return $this->response503();
         }

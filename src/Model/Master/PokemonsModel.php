@@ -9,9 +9,11 @@ class PokemonsModel extends BaseModel {
     
     /**
      * ポケモン図鑑一覧取得
+     * @param string $generation  世代
+     * @param string $megaFlg     メガシンカFLG
      * @return ポケモン図鑑一覧
      */
-    public function getList()
+    public function getList($generation, $megaFlg)
     {
         $sql = <<< SQL
 SELECT 
@@ -21,11 +23,21 @@ SELECT
 FROM 
   POKEMONS 
 WHERE 
-  delete_flg = 0
-ORDER BY zukan_no, sub_no
+  delete_flg = 0 
 SQL;
+        $params = [];
+        if ($generation !== '' && $generation !== null) {
+          $sql .= ' AND generation = :generation ';
+          $params['generation'] = $generation;
+        }
+        if ($megaFlg !== '' && $megaFlg !== null) {
+          $sql .= ' AND mega_flg = :megaFlg ';
+          $params['megaFlg'] = $megaFlg;
+        }
+        $sql .= 'ORDER BY zukan_no, sub_no';
+
         try {
-            return $this->con->execute($sql)->fetchAll('assoc');
+            return $this->con->execute($sql, $params)->fetchAll('assoc');
         } catch (Exception $e) {
             $this->logger->log($e->getMessage());
             return false;
