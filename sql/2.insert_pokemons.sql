@@ -96,7 +96,7 @@ INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VA
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (75, 1, 'ゴローン', 13, 9, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (75, 2, 'ゴローン(アローラのすがた)', 13, 4, 7);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (76, 1, 'ゴローニャ', 13, 9, 1);
-INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (76, 2, 'ゴローニャ(アローラのすがた)', 13, 4, 1);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (76, 2, 'ゴローニャ(アローラのすがた)', 13, 4, 7);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (77, 1, 'ポニータ', 2, 0, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (78, 1, 'ギャロップ', 2, 0, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (79, 1, 'ヤドン', 3, 11, 1);
