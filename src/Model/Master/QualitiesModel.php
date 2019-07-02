@@ -16,7 +16,8 @@ class QualitiesModel extends BaseModel {
         $sql = <<< SQL
 SELECT 
   quality_id AS qualityId,
-  quality_name AS qualityName 
+  quality_name AS qualityName,
+  effect AS effect 
 FROM 
   QUALITIES 
 ORDER BY quality_id

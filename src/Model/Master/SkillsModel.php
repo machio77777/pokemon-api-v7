@@ -16,7 +16,8 @@ class SkillsModel extends BaseModel {
         $sql = <<< SQL
 SELECT 
   skill_id AS skillId,
-  skill_name AS skillName 
+  skill_name AS skillName,
+  effect AS effect 
 FROM 
   SKILLS 
 ORDER BY skill_id
