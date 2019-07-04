@@ -57,6 +57,8 @@ SELECT
   po.zukan_no AS zukanNo,
   po.sub_no AS subNo,
   po.name AS name, 
+  CONCAT('type-', po.type_id1) AS typeId1,
+  CONCAT('type-', po.type_id2) AS typeId2,
   ty1.type_name1 AS type1,
   ty2.type_name1 AS type2,
   p1.quality_name AS quality1,
