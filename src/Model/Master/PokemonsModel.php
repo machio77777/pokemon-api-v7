@@ -108,15 +108,19 @@ SQL;
         $sql = <<< SQL
 SELECT 
   t.skill_id AS skillId,
-  s.skill_name AS skillName  
+  s.skill_name AS skillName,
+  CONCAT('type-', ty.type_id) AS typeId,
+  ty.type_name1 AS typeName,
+  s.power AS power,
+  s.effect AS effect 
 FROM 
   TRICKS t
-INNER JOIN SKILLS s 
-ON s.skill_id = t.skill_id
+INNER JOIN SKILLS s ON s.skill_id = t.skill_id 
+INNER JOIN TYPES ty ON s.type_id = ty.type_id 
 WHERE 
     t.zukan_no=:zukanNo  
 AND t.sub_no=:subNo 
-AND t.delete_flg = 0
+AND t.delete_flg = 0 
 SQL;
         try {
             return $this->con->execute($sql, ['zukanNo' => $zukanNo, 'subNo' => $subNo])->fetchAll('assoc');
