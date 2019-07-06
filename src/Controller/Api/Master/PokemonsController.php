@@ -45,7 +45,7 @@ class PokemonsController extends ApiController
      */
     public function getSkills($zukanNo, $subNo)
     {
-        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo, $this->request->getQuery('type'));
+        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo, $this->request->getQuery('typeId'));
         if ($skills === false) {
             return $this->response503();
         }

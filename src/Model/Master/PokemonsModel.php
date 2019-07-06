@@ -104,10 +104,10 @@ SQL;
      * ポケモン別の覚える技一覧取得
      * @param  string $zukanNo 図鑑No
      * @param  string $subNo   明細No
-     * @param  string $type    属性ID
+     * @param  string $typeId  属性ID
      * @return 覚える技
      */
-    public function getSkills($zukanNo, $subNo, $type)
+    public function getSkills($zukanNo, $subNo, $typeId)
     {
         $sql = <<< SQL
 SELECT 
@@ -127,9 +127,9 @@ AND t.sub_no=:subNo
 AND t.delete_flg = 0 
 SQL;
         $params = ['zukanNo' => $zukanNo, 'subNo' => $subNo];
-        if ($type !== '' && $type !== null) {
-          $sql .= " AND s.type_id =:type ";
-          $params['type'] = $type;
+        if ($typeId !== '' && $typeId !== null) {
+          $sql .= " AND s.type_id =:typeId ";
+          $params['typeId'] = $typeId;
         }
         try {
             return $this->con->execute($sql, $params)->fetchAll('assoc');
