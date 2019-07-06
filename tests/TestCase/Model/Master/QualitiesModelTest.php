@@ -30,7 +30,7 @@ class QualitiesModelTest extends TestCase {
      */
     public function testgetList()
     {
-        // 正常系パターン
+        // パターン1 正常系
         $qualities = $this->qualitiesModel->getList()[0];
         $this->assertEquals("1", $qualities['qualityId']);
         $this->assertEquals("あくしゅう", $qualities['qualityName']);
@@ -41,10 +41,10 @@ class QualitiesModelTest extends TestCase {
      */
     public function testget()
     {
-        // NULLパターン
+        // パターン1 NULL
         $this->assertEquals(null, $this->qualitiesModel->get(9999));
         
-        // 正常系パターン
+        // パターン2 正常系
         $quality = $this->qualitiesModel->get(1);
         $this->assertEquals("1", $quality['qualityId']);
         $this->assertEquals("あくしゅう", $quality['qualityName']);
