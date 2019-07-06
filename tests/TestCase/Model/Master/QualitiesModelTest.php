@@ -50,4 +50,15 @@ class QualitiesModelTest extends TestCase {
         $this->assertEquals("あくしゅう", $quality['qualityName']);
         $this->assertEquals("野生ポケモンと出会いにくくなる。攻撃した相手がたまにひるむ。", $quality['effect']);
     }
+
+    /**
+     * 特性に紐づくポケモン一覧取得
+     */
+    public function testgetPokemons()
+    {
+        $pokemons = $this->qualitiesModel->getPokemons(1);
+        $this->assertEquals("44", $pokemons[0]['zukanNo']);
+        $this->assertEquals("1", $pokemons[0]['subNo']);
+        $this->assertEquals("クサイハナ", $pokemons[0]['name']);
+    }
 }

@@ -39,5 +39,16 @@ class SkillsControllerTest extends BaseControllerTest
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
+
+    /**
+     * 技に紐づくポケモン一覧取得
+     */
+    public function testgetPokemons()
+    {
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/skills/1/pokemons');
+
+        // ステータスコード
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
+    }
     
 }

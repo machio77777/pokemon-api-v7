@@ -35,6 +35,20 @@ class SkillsController extends ApiController
         }
         return $this->response200($skill);
     }
+
+    /**
+     * 技に紐づくポケモン一覧取得
+     * @param  string $skillId 技ID
+     * @return JSONレスポンス
+     */
+    public function getPokemons($skillId)
+    {
+        $pokemons = $this->createSkillsModel()->getPokemons($skillId);
+        if ($pokemons === false) {
+            return $this->response503();
+        }
+        return $this->response200($pokemons);
+    }
     
     /**
      * SkillsModel生成

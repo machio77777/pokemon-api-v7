@@ -71,4 +71,15 @@ class SkillsModelTest extends TestCase {
         $this->assertEquals("直○", $skill['directAttack']);
         $this->assertEquals("守○", $skill['mamoru']);
     }
+
+    /**
+     * 技に紐づくポケモン一覧取得
+     */
+    public function testgetPokemons()
+    {
+        $pokemons = $this->skillsModel->getPokemons(1);
+        $this->assertEquals("74", $pokemons[0]['zukanNo']);
+        $this->assertEquals("1", $pokemons[0]['subNo']);
+        $this->assertEquals("イシツブテ", $pokemons[0]['name']);
+    }
 }

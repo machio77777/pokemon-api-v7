@@ -35,6 +35,20 @@ class QualitiesController extends ApiController
         }
         return $this->response200($quality);
     }
+
+    /**
+     * 特性に紐づくポケモン一覧取得
+     * @param  string $qualityId 特性ID
+     * @return JSONレスポンス
+     */
+    public function getPokemons($qualityId)
+    {
+        $pokemons = $this->createQualitiesModel()->getPokemons($qualityId);
+        if ($pokemons === false) {
+            return $this->response503();
+        }
+        return $this->response200($pokemons);
+    }
     
     /**
      * QualitiesModel生成

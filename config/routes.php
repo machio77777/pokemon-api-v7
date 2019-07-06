@@ -25,8 +25,10 @@ Router::scope('/api/v1', function (RouteBuilder $routes) {
     $routes->get('/pokemons/:zukanNo/:subNo/skills', ['prefix' => 'api/master', 'controller' => 'Pokemons', 'action' => 'getSkills'])->setPass(['zukanNo', 'subNo']);
     $routes->get('/qualities', ['prefix' => 'api/master', 'controller' => 'Qualities', 'action' => 'getList']);
     $routes->get('/qualities/:qualityId', ['prefix' => 'api/master', 'controller' => 'Qualities', 'action' => 'get'])->setPass(['qualityId']);
+    $routes->get('/qualities/:qualityId/pokemons', ['prefix' => 'api/master', 'controller' => 'Qualities', 'action' => 'getPokemons'])->setPass(['qualityId']);
     $routes->get('/skills', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'getList']);
     $routes->get('/skills/:skillId', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'get'])->setPass(['skillId']);
+    $routes->get('/skills/:skillId/pokemons', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'getPokemons'])->setPass(['skillId']);
     
     /**
      * 対戦用

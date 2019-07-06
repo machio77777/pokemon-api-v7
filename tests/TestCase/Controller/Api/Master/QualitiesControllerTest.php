@@ -32,5 +32,16 @@ class QualitiesControllerTest extends BaseControllerTest
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
+
+    /**
+     * 特性に紐づくポケモン一覧取得
+     */
+    public function testgetPokemons()
+    {
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/qualities/100/pokemons');
+
+        // ステータスコード
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
+    }
     
 }
