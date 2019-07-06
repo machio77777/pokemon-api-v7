@@ -9,8 +9,8 @@ class PokemonsModel extends BaseModel {
     
     /**
      * ポケモン図鑑一覧取得
-     * @param string $generation  世代
-     * @param string $megaFlg     メガシンカFLG
+     * @param string $generation 世代
+     * @param string $megaFlg    メガシンカFLG
      * @return ポケモン図鑑一覧
      */
     public function getList($generation, $megaFlg)
@@ -57,10 +57,10 @@ SELECT
   po.zukan_no AS zukanNo,
   po.sub_no AS subNo,
   po.name AS name, 
-  CONCAT('type-', po.type_id1) AS typeId1,
-  CONCAT('type-', po.type_id2) AS typeId2,
-  ty1.type_name1 AS type1,
-  ty2.type_name1 AS type2,
+  po.type_id1 AS typeId1,
+  po.type_id2 AS typeId2,
+  ty1.type_name1 AS typeName1,
+  ty2.type_name1 AS typeName2,
   p1.quality_id AS qualityId1,
   p2.quality_id AS qualityId2,
   p3.quality_id AS dreamQualityId,
@@ -113,8 +113,7 @@ SQL;
 SELECT 
   t.skill_id AS skillId,
   s.skill_name AS skillName,
-  ty.type_id AS type,
-  CONCAT('type-', ty.type_id) AS typeId,
+  ty.type_id AS typeId,
   ty.type_name1 AS typeName,
   s.power AS power,
   s.effect AS effect 

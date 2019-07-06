@@ -27,11 +27,17 @@ class PokemonsModelTest extends TestCase {
      */
     public function testgetList()
     {
-        // 正常系パターン
-        $pokemon = $this->pokemonsModel->getList()[0];
-        $this->assertEquals("1", $pokemon['zukanNo']);
-        $this->assertEquals("1", $pokemon['subNo']);
-        $this->assertEquals("フシギダネ", $pokemon['name']);
+        // パターン1 クエリストリングなし
+        $pokemonNotQueryString = $this->pokemonsModel->getList(null, null)[0];
+        $this->assertEquals("1", $pokemonNotQueryString['zukanNo']);
+        $this->assertEquals("1", $pokemonNotQueryString['subNo']);
+        $this->assertEquals("フシギダネ", $pokemonNotQueryString['name']);
+
+        // パターン2 クエリストリングあり
+        $pokemonQueryString = $this->pokemonsModel->getList(1, 1)[0];
+        $this->assertEquals("3", $pokemonQueryString['zukanNo']);
+        $this->assertEquals("2", $pokemonQueryString['subNo']);
+        $this->assertEquals("メガフシギバナ", $pokemonQueryString['name']);
     }
     
     /**
@@ -39,16 +45,18 @@ class PokemonsModelTest extends TestCase {
      */
     public function testget()
     {
-        // NULLパターン
+        // パターン1 NULL
         $this->assertEquals(null, $this->pokemonsModel->get(1, 100));
         
-        // 正常系パターン
+        // パターン2 正常系
         $pokemon = $this->pokemonsModel->get(1, 1);
         $this->assertEquals("1", $pokemon['zukanNo']);
         $this->assertEquals("1", $pokemon['subNo']);
         $this->assertEquals("フシギダネ", $pokemon['name']);
-        $this->assertEquals("くさ", $pokemon['type1']);
-        $this->assertEquals("どく", $pokemon['type2']);
+        $this->assertEquals("5", $pokemon['typeId1']);
+        $this->assertEquals("8", $pokemon['typeId2']);
+        $this->assertEquals("くさ", $pokemon['typeName1']);
+        $this->assertEquals("どく", $pokemon['typeName2']);
         $this->assertEquals("しんりょく", $pokemon['quality1']);
         $this->assertEquals(null, $pokemon['quality2']);
         $this->assertEquals("ようりょくそ", $pokemon['dreamQuality']);
@@ -65,12 +73,23 @@ class PokemonsModelTest extends TestCase {
      */
     public function testgetSkills()
     {
-        // 正常系パターン
-        $skills = $this->pokemonsModel->getSkills(1, 1);
-        $this->assertEquals("314", $skills[0]['skillId']);
-        $this->assertEquals("たいあたり", $skills[0]['skillName']);
-        $this->assertEquals("439", $skills[1]['skillId']);
-        $this->assertEquals("なきごえ", $skills[1]['skillName']);
+        // パターン1 クエリストリングなし
+        $skillsNotQueryString = $this->pokemonsModel->getSkills(1, 1, null);
+        $this->assertEquals("314", $skillsNotQueryString[0]['skillId']);
+        $this->assertEquals("たいあたり", $skillsNotQueryString[0]['skillName']);
+        $this->assertEquals("1", $skillsNotQueryString[0]['typeId']);
+        $this->assertEquals("ノーマル", $skillsNotQueryString[0]['typeName']);
+        $this->assertEquals("40", $skillsNotQueryString[0]['power']);
+        $this->assertEquals("通常攻撃。(第6世代は威力:50)", $skillsNotQueryString[0]['effect']);
+
+        // パターン2 クエリストリング
+        $skillsQueryString = $this->pokemonsModel->getSkills(1, 1, null);
+        $this->assertEquals("314", $skillsQueryString[0]['skillId']);
+        $this->assertEquals("たいあたり", $skillsQueryString[0]['skillName']);
+        $this->assertEquals("1", $skillsQueryString[0]['typeId']);
+        $this->assertEquals("ノーマル", $skillsQueryString[0]['typeName']);
+        $this->assertEquals("40", $skillsQueryString[0]['power']);
+        $this->assertEquals("通常攻撃。(第6世代は威力:50)", $skillsQueryString[0]['effect']);
     }
     
 }
