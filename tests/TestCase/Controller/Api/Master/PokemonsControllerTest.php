@@ -16,16 +16,17 @@ class PokemonsControllerTest extends BaseControllerTest
      */
     public function testgetList()
     {
+        // パターン1 クエリストリングなし
         $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons');
         
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
-        
-        // レスポンスボディー
-        $res = json_decode($this->_response->getBody(), true)['data'][0];
-        $this->assertEquals("1", $res['zukanNo']);
-        $this->assertEquals("1", $res['subNo']);
-        $this->assertEquals("フシギダネ", $res['name']);
+
+        // パターン2 クエリストリングあり
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons?generation=1&megaFlg=1');
+
+        // ステータスコード
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
     
     /**
@@ -37,24 +38,6 @@ class PokemonsControllerTest extends BaseControllerTest
         
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
-        
-        // レスポンスボディー
-        $res = json_decode($this->_response->getBody(), true)['data'];
-        $this->assertEquals("150", $res['zukanNo']);
-        $this->assertEquals("1", $res['subNo']);
-        $this->assertEquals("ミュウツー", $res['name']);
-        $this->assertEquals("エスパー", $res['type1']);
-        $this->assertEquals(null, $res['type2']);
-        $this->assertEquals("プレッシャー", $res['quality1']);
-        $this->assertEquals(null, $res['quality2']);
-        $this->assertEquals("きんちょうかん", $res['dreamQuality']);
-        $this->assertEquals("106", $res['hp']);
-        $this->assertEquals("110", $res['at']);
-        $this->assertEquals("90", $res['df']);
-        $this->assertEquals("154", $res['sa']);
-        $this->assertEquals("90", $res['sd']);
-        $this->assertEquals("130", $res['sp']);
-        $this->assertEquals("0", $res['megaFlg']);
     }
     
     /**
@@ -62,13 +45,16 @@ class PokemonsControllerTest extends BaseControllerTest
      */
     public function testgetSkills()
     {
-        // 正常系
+        // パターン1 クエリストリングなし
         $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/skills');
+
+        // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
-        
-        // レスポンスボディー
-        $res = json_decode($this->_response->getBody(), true)['data'];
-        $this->assertEquals("314", $res[0]['skillId']);
-        $this->assertEquals("439", $res[1]['skillId']);
+
+        // パターン2 クエリストリングあり
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/pokemons/1/1/skills?type=1');
+
+        // ステータスコード
+        $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
     }
 }

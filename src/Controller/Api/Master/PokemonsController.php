@@ -15,9 +15,7 @@ class PokemonsController extends ApiController
      */
     public function getList()
     {
-        $generation = $this->request->getQuery('generation');
-        $megaFlg = $this->request->getQuery('megaFlg');
-        $pokemons = $this->createPokemonsModel()->getList($generation, $megaFlg);
+        $pokemons = $this->createPokemonsModel()->getList($this->request->getQuery('generation'), $this->request->getQuery('megaFlg'));
         if ($pokemons === false) {
             return $this->response503();
         }
@@ -47,8 +45,7 @@ class PokemonsController extends ApiController
      */
     public function getSkills($zukanNo, $subNo)
     {
-        $type = $this->request->getQuery('type');
-        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo, $type);
+        $skills = $this->createPokemonsModel()->getSkills($zukanNo, $subNo, $this->request->getQuery('type'));
         if ($skills === false) {
             return $this->response503();
         }
