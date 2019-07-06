@@ -15,8 +15,7 @@ class SkillsController extends ApiController
      */
     public function getList()
     {
-        $type = $this->request->getQuery('type');
-        $skills = $this->createSkillsModel()->getList($type);
+        $skills = $this->createSkillsModel()->getList($this->request->getQuery('type'));
         if ($skills === false) {
             return $this->response503();
         }
