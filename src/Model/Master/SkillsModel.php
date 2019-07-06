@@ -9,21 +9,32 @@ class SkillsModel extends BaseModel {
     
     /**
      * 技一覧取得
+     * @param  $type 属性
      * @return 技一覧
      */
-    public function getList()
+    public function getList($type)
     {
         $sql = <<< SQL
 SELECT 
-  skill_id AS skillId,
-  skill_name AS skillName,
-  effect AS effect 
+  sk.skill_id AS skillId,
+  sk.skill_name AS skillName,
+  CONCAT('type-', ty.type_id) AS typeId,
+  ty.type_name1 AS typeName,
+  sk.power AS power,
+  sk.effect AS effect 
 FROM 
-  SKILLS 
-ORDER BY skill_id
+  SKILLS sk  
+INNER JOIN TYPES ty ON sk.type_id = ty.type_id 
+
 SQL;
+        $params = [];
+        if ($type !== null && $type !== '') {
+          $params['type'] = $type;
+          $sql .= ' WHERE sk.type_id =:type';
+        }
+        $sql .= ' ORDER BY skill_id ';
         try {
-            return $this->con->execute($sql)->fetchAll('assoc');
+            return $this->con->execute($sql, $params)->fetchAll('assoc');
         } catch (Exception $e) {
             $this->logger->log($e->getMessage());
             return false;
