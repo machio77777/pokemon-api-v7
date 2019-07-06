@@ -23,7 +23,7 @@ class SkillsControllerTest extends BaseControllerTest
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
 
         // パターン2 クエリストリングあり
-        $this->get(BaseControllerTest::API_REVISION_V1 . '/skills?type=1');
+        $this->get(BaseControllerTest::API_REVISION_V1 . '/skills?typeId=1');
 
         // ステータスコード
         $this->assertResponseCode(BaseControllerTest::HTTP_CODE_OK);
