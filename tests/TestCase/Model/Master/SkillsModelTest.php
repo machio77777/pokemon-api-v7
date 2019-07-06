@@ -30,10 +30,23 @@ class SkillsModelTest extends TestCase {
      */
     public function testgetList()
     {
-        // 正常系パターン
-        $skill = $this->skillsModel->getList()[0];
-        $this->assertEquals("1", $skill['skillId']);
-        $this->assertEquals("アームハンマー", $skill['skillName']);
+        // パターン1 クエリストリングなし
+        $skillNotQueryString = $this->skillsModel->getList(null)[0];
+        $this->assertEquals("1", $skillNotQueryString['skillId']);
+        $this->assertEquals("アームハンマー", $skillNotQueryString['skillName']);
+        $this->assertEquals("7", $skillNotQueryString['typeId']);
+        $this->assertEquals("かくとう", $skillNotQueryString['typeName']);
+        $this->assertEquals("100", $skillNotQueryString['power']);
+        $this->assertEquals("攻撃後、自分の『すばやさ』ランクが1段階下がる。特性『てつのこぶし』の時、威力が1.2倍になる。", $skillNotQueryString['effect']);
+
+        // パターン2 クエリストリングあり
+        $skillQueryString = $this->skillsModel->getList(7)[0];
+        $this->assertEquals("1", $skillQueryString['skillId']);
+        $this->assertEquals("アームハンマー", $skillQueryString['skillName']);
+        $this->assertEquals("7", $skillQueryString['typeId']);
+        $this->assertEquals("かくとう", $skillQueryString['typeName']);
+        $this->assertEquals("100", $skillQueryString['power']);
+        $this->assertEquals("攻撃後、自分の『すばやさ』ランクが1段階下がる。特性『てつのこぶし』の時、威力が1.2倍になる。", $skillQueryString['effect']);
     }
     
     /**
@@ -41,10 +54,10 @@ class SkillsModelTest extends TestCase {
      */
     public function testget()
     {
-        // NULLパターン
+        // パターン1 NULL
         $this->assertEquals(null, $this->skillsModel->get(9999));
         
-        // 正常系パターン
+        // パターン2 正常系
         $skill = $this->skillsModel->get(1);
         $this->assertEquals("1", $skill['skillId']);
         $this->assertEquals("アームハンマー", $skill['skillName']);

@@ -18,7 +18,7 @@ class SkillsModel extends BaseModel {
 SELECT 
   sk.skill_id AS skillId,
   sk.skill_name AS skillName,
-  CONCAT('type-', ty.type_id) AS typeId,
+  ty.type_id AS typeId,
   ty.type_name1 AS typeName,
   sk.power AS power,
   sk.effect AS effect 
