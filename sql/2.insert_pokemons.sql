@@ -1020,7 +1020,7 @@ UPDATE Pokemons SET hp = 40, at = 30, df = 50, sa = 55, sd = 55, sp = 100, quali
 UPDATE Pokemons SET hp = 60, at = 50, df = 70, sa = 80, sd = 80, sp = 150, quality_id1 = 43, quality_id2 = 9, dream_quality_id = 106 , mega_flg = 0 WHERE zukan_no = 101 AND sub_no = 1;
 UPDATE Pokemons SET hp = 60, at = 40, df = 80, sa = 60, sd = 45, sp = 40, quality_id1 = 34, quality_id2 = 0, dream_quality_id = 0 , mega_flg = 0 WHERE zukan_no = 102 AND sub_no = 1;
 UPDATE Pokemons SET hp = 95, at = 95, df = 85, sa = 125, sd = 75, sp = 55, quality_id1 = 34, quality_id2 = 0, dream_quality_id = 139 , mega_flg = 0 WHERE zukan_no = 103 AND sub_no = 1;
-UPDATE Pokemons SET hp = 95, at = 95, df = 85, sa = 125, sd = 75, sp = 55, quality_id1 = 119, quality_id2 = 0, dream_quality_id = 139 , mega_flg = 0 WHERE zukan_no = 103 AND sub_no = 1;
+UPDATE Pokemons SET hp = 95, at = 95, df = 85, sa = 125, sd = 75, sp = 55, quality_id1 = 119, quality_id2 = 0, dream_quality_id = 139 , mega_flg = 0 WHERE zukan_no = 103 AND sub_no = 2;
 UPDATE Pokemons SET hp = 50, at = 50, df = 95, sa = 40, sd = 50, sp = 35, quality_id1 = 69, quality_id2 = 31, dream_quality_id = 4 , mega_flg = 0 WHERE zukan_no = 104 AND sub_no = 1;
 UPDATE Pokemons SET hp = 60, at = 80, df = 110, sa = 50, sd = 80, sp = 45, quality_id1 = 69, quality_id2 = 31, dream_quality_id = 4 , mega_flg = 0 WHERE zukan_no = 105 AND sub_no = 1;
 UPDATE Pokemons SET hp = 60, at = 80, df = 110, sa = 50, sd = 80, sp = 45, quality_id1 = 130, quality_id2 = 31, dream_quality_id = 69 , mega_flg = 0 WHERE zukan_no = 105 AND sub_no = 2;

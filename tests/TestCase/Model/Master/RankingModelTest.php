@@ -31,7 +31,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("242", $pokemons[0]['zukanNo']);
         $this->assertEquals("1", $pokemons[0]['subNo']);
         $this->assertEquals("ハピナス", $pokemons[0]['name']);
-        $this->assertEquals("255", $pokemons[0]['hp']);
+        $this->assertEquals("255", $pokemons[0]['value']);
     }
 
     /**
@@ -43,7 +43,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("150", $pokemons[0]['zukanNo']);
         $this->assertEquals("2", $pokemons[0]['subNo']);
         $this->assertEquals("メガミュウツーX", $pokemons[0]['name']);
-        $this->assertEquals("190", $pokemons[0]['at']);
+        $this->assertEquals("190", $pokemons[0]['value']);
     }
 
     /**
@@ -55,7 +55,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("208", $pokemons[0]['zukanNo']);
         $this->assertEquals("2", $pokemons[0]['subNo']);
         $this->assertEquals("メガハガネール", $pokemons[0]['name']);
-        $this->assertEquals("230", $pokemons[0]['df']);
+        $this->assertEquals("230", $pokemons[0]['value']);
     }
 
     /**
@@ -67,7 +67,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("150", $pokemons[0]['zukanNo']);
         $this->assertEquals("3", $pokemons[0]['subNo']);
         $this->assertEquals("メガミュウツーY", $pokemons[0]['name']);
-        $this->assertEquals("194", $pokemons[0]['sa']);
+        $this->assertEquals("194", $pokemons[0]['value']);
     }
 
     /**
@@ -79,7 +79,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("213", $pokemons[0]['zukanNo']);
         $this->assertEquals("1", $pokemons[0]['subNo']);
         $this->assertEquals("ツボツボ", $pokemons[0]['name']);
-        $this->assertEquals("230", $pokemons[0]['sd']);
+        $this->assertEquals("230", $pokemons[0]['value']);
     }
 
     /**
@@ -91,7 +91,7 @@ class PokemonsModelTest extends TestCase {
         $this->assertEquals("291", $pokemons[0]['zukanNo']);
         $this->assertEquals("1", $pokemons[0]['subNo']);
         $this->assertEquals("テッカニン", $pokemons[0]['name']);
-        $this->assertEquals("160", $pokemons[0]['sp']);
+        $this->assertEquals("160", $pokemons[0]['value']);
     }
     
 }

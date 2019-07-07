@@ -17,7 +17,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  hp AS hp 
+  hp AS value 
 FROM 
   POKEMONS 
 ORDER BY hp DESC, zukanNo, subNo
@@ -41,7 +41,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  at AS at 
+  at AS value 
 FROM 
   POKEMONS 
 ORDER BY at DESC, zukanNo, subNo
@@ -65,7 +65,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  df AS df 
+  df AS value 
 FROM 
   POKEMONS 
 ORDER BY df DESC, zukanNo, subNo
@@ -89,7 +89,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  sa AS sa 
+  sa AS value 
 FROM 
   POKEMONS 
 ORDER BY sa DESC, zukanNo, subNo
@@ -113,7 +113,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  sd AS sd 
+  sd AS value 
 FROM 
   POKEMONS 
 ORDER BY sd DESC, zukanNo, subNo
@@ -137,7 +137,7 @@ SELECT
   zukan_no AS zukanNo,
   sub_no AS subNo,
   name AS name, 
-  sp AS sp 
+  sp AS value 
 FROM 
   POKEMONS 
 ORDER BY sp DESC, zukanNo, subNo
