@@ -29,6 +29,12 @@ Router::scope('/api/v1', function (RouteBuilder $routes) {
     $routes->get('/skills', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'getList']);
     $routes->get('/skills/:skillId', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'get'])->setPass(['skillId']);
     $routes->get('/skills/:skillId/pokemons', ['prefix' => 'api/master', 'controller' => 'Skills', 'action' => 'getPokemons'])->setPass(['skillId']);
+    $routes->get('/ranking/hp', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getHpList']);
+    $routes->get('/ranking/at', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getAtList']);
+    $routes->get('/ranking/df', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getDfList']);
+    $routes->get('/ranking/sa', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getSaList']);
+    $routes->get('/ranking/sd', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getSdList']);
+    $routes->get('/ranking/sp', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getSpList']);
     
     /**
      * 対戦用

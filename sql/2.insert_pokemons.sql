@@ -351,7 +351,7 @@ INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation, hp
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (304, 1, 'ココドラ', 17, 13, 3);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (305, 1, 'コドラ', 17, 13, 3);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (306, 1, 'ボスゴドラ', 17, 13, 3);
-INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (306, 2, 'メガボスゴドラ', 17, 0, 3, 111, 70, 140, 230, 60, 80, 50, 0, 0, 1);
+INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (306, 2, 'メガボスゴドラ', 17, 0, 3, 70, 140, 230, 60, 80, 50, 111, 0, 0, 1);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (307, 1, 'アサナン', 7, 11, 3);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation) VALUES (308, 1, 'チャーレム', 7, 11, 3);
 INSERT INTO Pokemons (zukan_no, sub_no, name, type_id1, type_id2, generation, hp, at, df, sa, sd, sp, quality_id1, quality_id2, dream_quality_id, mega_flg) VALUES (308, 2, 'メガチャーレム', 7, 11, 3, 60, 100, 85, 80, 85, 100, 74, 0, 0, 1);
