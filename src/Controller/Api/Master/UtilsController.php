@@ -21,6 +21,19 @@ class UtilsController extends ApiController
         }
         return $this->response200($chars);
     }
+
+    /**
+     * 属性一覧取得
+     * @return JSONレスポンス
+     */
+    public function getTypeList()
+    {
+        $types = $this->createUtilsModel()->getTypeList();
+        if ($types === false) {
+            return $this->response503();
+        }
+        return $this->response200($types);
+    }
     
     /**
      * UtilsModel生成

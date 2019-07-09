@@ -33,4 +33,26 @@ SQL;
             return false;
         }
     }
+
+    /**
+     * 属性一覧取得
+     */
+    public function getTypeList()
+    {
+        $sql =<<< SQL
+SELECT 
+  type_id AS typeId,
+  type_name1 AS typeName1,
+  type_name2 AS typeName2 
+FROM 
+  TYPES 
+ORDER BY type_id
+SQL;
+        try {
+            return $this->con->execute($sql)->fetchAll('assoc');
+        } catch (Exception $e) {
+            $this->logger->log($e->getMessage());
+            return false;
+        }
+    }
 }

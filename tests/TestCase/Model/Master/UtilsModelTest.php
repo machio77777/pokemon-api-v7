@@ -23,7 +23,7 @@ class UtilsModelTest extends TestCase {
     }
     
     /**
-     * ポケモン図鑑一覧取得
+     * 性格一覧取得
      */
     public function testgetList()
     {
@@ -35,6 +35,17 @@ class UtilsModelTest extends TestCase {
         $this->assertNull($chars[0]['sa']);
         $this->assertNull($chars[0]['sd']);
         $this->assertNull($chars[0]['sp']);
+    }
+
+    /**
+     * 属性一覧取得
+     */
+    public function testgetTypeList()
+    {
+        $types = $this->utilsModel->getTypeList();
+        $this->assertEquals("1", $types[0]['typeId']);
+        $this->assertEquals("ノーマル", $types[0]['typeName1']);
+        $this->assertEquals("ノ", $types[0]['typeName2']);
     }
     
 }

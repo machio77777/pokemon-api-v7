@@ -36,6 +36,7 @@ Router::scope('/api/v1', function (RouteBuilder $routes) {
     $routes->get('/ranking/sd', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getSdList']);
     $routes->get('/ranking/sp', ['prefix' => 'api/master', 'controller' => 'Ranking', 'action' => 'getSpList']);
     $routes->get('/character', ['prefix' => 'api/master', 'controller' => 'Utils', 'action' => 'getCharList']);
+    $routes->get('/type', ['prefix' => 'api/master', 'controller' => 'Utils', 'action' => 'getTypeList']);
     
     /**
      * 対戦用
